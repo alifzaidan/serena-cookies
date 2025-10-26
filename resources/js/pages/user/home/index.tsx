@@ -1,10 +1,11 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { InfiniteSlider } from '@/components/ui/infinite-slider';
+import { TextEffect } from '@/components/ui/text-effect';
 import UserLayout from '@/layouts/user-layout';
-import { rupiahFormatter } from '@/lib/utils';
-import { Head } from '@inertiajs/react';
-import { ArrowRight, Award, Clock, Cookie, Shield, ShoppingBag, Sparkles } from 'lucide-react';
+import { Head, Link } from '@inertiajs/react';
+import { motion } from 'framer-motion';
+import { ArrowRight, Award, Clock, Cookie, Gift, MapPin, Package, Shield, ShoppingBag, Sparkles } from 'lucide-react';
 
 interface Product {
     id: string;
@@ -17,28 +18,18 @@ interface Product {
     };
 }
 
-interface Hamper {
+interface Variant {
     id: string;
     name: string;
-    description?: string;
-    price: number;
-    image?: string;
-}
-
-interface Catalog {
-    id: string;
-    title: string;
-    description?: string;
-    image?: string;
+    products_count: number;
 }
 
 interface HomeProps {
-    featured_products: Product[];
-    featured_hampers: Hamper[];
-    catalogs: Catalog[];
+    all_products: Product[];
+    variants: Variant[];
 }
 
-export default function Home({ featured_products, featured_hampers, catalogs }: HomeProps) {
+export default function Home({ all_products, variants }: HomeProps) {
     return (
         <UserLayout>
             <Head title="Serena Cookies - Kue Kering Berkualitas Premium" />
@@ -48,19 +39,96 @@ export default function Home({ featured_products, featured_hampers, catalogs }: 
                 <div className="container mx-auto max-w-7xl px-4 pt-20 pb-10 md:pt-32 md:pb-16">
                     <div className="grid gap-8 lg:grid-cols-5 lg:gap-12">
                         <div className="col-span-3 flex flex-col justify-center space-y-4 md:space-y-6">
-                            <div className="inline-flex w-fit items-center gap-2 rounded-full bg-amber-100 px-4 py-2 text-xs font-medium text-amber-900 md:text-sm">
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.5, delay: 0.2 }}
+                                className="inline-flex w-fit items-center gap-2 rounded-full bg-amber-100 px-4 py-2 text-xs font-medium text-amber-900 md:text-sm"
+                            >
                                 <Sparkles className="h-4 w-4" />
                                 Kue Kering Premium
+                            </motion.div>
+                            <div className="flex gap-1.5 font-black-mango text-4xl font-bold tracking-tight sm:text-5xl md:gap-3 md:text-6xl lg:text-7xl">
+                                <TextEffect
+                                    per="char"
+                                    delay={0.5}
+                                    variants={{
+                                        container: {
+                                            hidden: {
+                                                opacity: 0,
+                                            },
+                                            visible: {
+                                                opacity: 1,
+                                                transition: {
+                                                    staggerChildren: 0.05,
+                                                },
+                                            },
+                                        },
+                                        item: {
+                                            hidden: {
+                                                opacity: 0,
+                                                rotateX: 90,
+                                                y: 10,
+                                            },
+                                            visible: {
+                                                opacity: 1,
+                                                rotateX: 0,
+                                                y: 0,
+                                                transition: {
+                                                    duration: 0.2,
+                                                },
+                                            },
+                                        },
+                                    }}
+                                >
+                                    Serena
+                                </TextEffect>
+                                <TextEffect
+                                    per="char"
+                                    delay={0.5}
+                                    variants={{
+                                        container: {
+                                            hidden: {
+                                                opacity: 0,
+                                            },
+                                            visible: {
+                                                opacity: 1,
+                                                transition: {
+                                                    staggerChildren: 0.05,
+                                                },
+                                            },
+                                        },
+                                        item: {
+                                            hidden: {
+                                                opacity: 0,
+                                                rotateX: 90,
+                                                y: 10,
+                                            },
+                                            visible: {
+                                                opacity: 1,
+                                                rotateX: 0,
+                                                y: 0,
+                                                transition: {
+                                                    duration: 0.2,
+                                                },
+                                            },
+                                        },
+                                    }}
+                                    className="text-primary"
+                                >
+                                    Cookies
+                                </TextEffect>
                             </div>
-                            <h1 className="font-black-mango text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-                                Serena
-                                <span className="text-primary"> Cookies</span>
-                            </h1>
-                            <p className="text-md text-muted-foreground md:text-lg">
+                            <TextEffect per="word" delay={1} speedReveal={2} className="md:text-md text-base">
                                 Kue kering berkualitas premium dengan cita rasa istimewa. Dibuat dengan bahan pilihan terbaik untuk kebahagiaan
                                 keluarga Anda.
-                            </p>
-                            <div className="flex flex-col gap-3 sm:flex-row">
+                            </TextEffect>
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.5, delay: 1.5 }}
+                                className="flex flex-col gap-3 sm:flex-row"
+                            >
                                 <Button size="lg" className="gap-2">
                                     <ShoppingBag className="h-5 w-5" />
                                     Pesan Sekarang
@@ -69,52 +137,58 @@ export default function Home({ featured_products, featured_hampers, catalogs }: 
                                     Lihat Katalog
                                     <ArrowRight className="h-4 w-4" />
                                 </Button>
-                            </div>
+                            </motion.div>
                         </div>
-                        <div className="relative col-span-3 md:col-span-2">
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.6, delay: 0.8 }}
+                            className="relative col-span-3 md:col-span-2"
+                        >
                             <img
                                 src="/assets/images/all-variant.jpg"
                                 alt="All Variant Serena Cookies"
                                 className="w-full rounded-3xl border-4 border-primary"
                             />
                             {/* Floating badges */}
-                            <div className="absolute top-8 -right-4 rounded-2xl bg-secondary p-4 shadow-xl dark:bg-gray-900">
+                            <motion.div
+                                initial={{ opacity: 0, x: 20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ duration: 0.5, delay: 1.2 }}
+                                className="absolute top-8 -right-4 rounded-2xl bg-secondary p-4 shadow-xl dark:bg-gray-900"
+                            >
                                 <Cookie className="h-6 w-6 text-amber-600 md:h-8 md:w-8" />
-                            </div>
-                            <div className="absolute bottom-8 -left-4 rounded-2xl bg-secondary p-4 shadow-xl dark:bg-gray-900">
+                            </motion.div>
+                            <motion.div
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ duration: 0.5, delay: 1.4 }}
+                                className="absolute bottom-8 -left-4 rounded-2xl bg-secondary p-4 shadow-xl dark:bg-gray-900"
+                            >
                                 <Award className="h-6 w-6 text-green-600 md:h-8 md:w-8" />
-                            </div>
-                        </div>
+                            </motion.div>
+                        </motion.div>
                     </div>
                 </div>
             </section>
 
+            {/* Products Infinite Slider */}
             <div className="h-32 overflow-hidden bg-secondary md:h-40">
                 <InfiniteSlider gap={24} reverse className="mt-8 -ml-[5%] w-[110%] -rotate-2 bg-primary p-4 md:py-5">
-                    <h3 className="font-black-mango text-lg font-semibold text-secondary md:text-2xl">Almond</h3>
-                    <Cookie className="h-8 w-8 text-secondary-foreground" />
-                    <h3 className="font-black-mango text-lg font-semibold text-secondary md:text-2xl">Almond</h3>
-                    <Cookie className="h-8 w-8 text-secondary-foreground" />
-                    <h3 className="font-black-mango text-lg font-semibold text-secondary md:text-2xl">Almond</h3>
-                    <Cookie className="h-8 w-8 text-secondary-foreground" />
-                    <h3 className="font-black-mango text-lg font-semibold text-secondary md:text-2xl">Almond</h3>
-                    <Cookie className="h-8 w-8 text-secondary-foreground" />
-                    <h3 className="font-black-mango text-lg font-semibold text-secondary md:text-2xl">Almond</h3>
-                    <Cookie className="h-8 w-8 text-secondary-foreground" />
-                    <h3 className="font-black-mango text-lg font-semibold text-secondary md:text-2xl">Almond</h3>
-                    <Cookie className="h-8 w-8 text-secondary-foreground" />
-                    <h3 className="font-black-mango text-lg font-semibold text-secondary md:text-2xl">Almond</h3>
-                    <Cookie className="h-8 w-8 text-secondary-foreground" />
-                    <h3 className="font-black-mango text-lg font-semibold text-secondary md:text-2xl">Almond</h3>
-                    <Cookie className="h-8 w-8 text-secondary-foreground" />
-                    <h3 className="font-black-mango text-lg font-semibold text-secondary md:text-2xl">Almond</h3>
-                    <Cookie className="h-8 w-8 text-secondary-foreground" />
+                    {all_products.map((product, index) => (
+                        <>
+                            <h3 key={`name-${product.id}-${index}`} className="font-black-mango text-lg font-semibold text-secondary md:text-xl">
+                                {product.name}
+                            </h3>
+                            <Cookie key={`icon-${product.id}-${index}`} className="h-8 w-8 text-secondary-foreground" />
+                        </>
+                    ))}
                 </InfiniteSlider>
             </div>
 
             {/* Features Section */}
             <section className="border-y bg-muted/30 py-12">
-                <div className="container mx-auto px-4">
+                <div className="container mx-auto max-w-7xl px-4">
                     <div className="grid gap-8 md:grid-cols-3">
                         <div className="flex items-center gap-4">
                             <div className="rounded-full bg-amber-100 p-3 dark:bg-amber-900/30">
@@ -147,183 +221,181 @@ export default function Home({ featured_products, featured_hampers, catalogs }: 
                 </div>
             </section>
 
-            {/* Products Section */}
+            {/* Variants Section */}
             <section className="py-20">
-                <div className="container mx-auto px-4">
+                <div className="container mx-auto max-w-7xl px-4">
                     <div className="mb-12 text-center">
-                        <h2 className="mb-4 text-3xl font-bold md:text-4xl">Produk Unggulan</h2>
-                        <p className="text-lg text-muted-foreground">Pilihan terbaik untuk setiap momen spesial Anda</p>
+                        <h2 className="mb-4 text-3xl font-bold md:text-4xl">Varian Produk Kami</h2>
+                        <p className="text-lg text-muted-foreground">Pilih varian favorit Anda dan temukan kelezatan yang sempurna</p>
                     </div>
 
-                    {featured_products.length > 0 ? (
-                        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                            {featured_products.map((product) => (
-                                <Card key={product.id} className="group overflow-hidden transition-all hover:shadow-lg">
-                                    <div className="aspect-square overflow-hidden bg-muted">
-                                        {product.image ? (
-                                            <img
-                                                src={`/storage/${product.image}`}
-                                                alt={product.name}
-                                                className="h-full w-full object-cover transition-transform group-hover:scale-105"
-                                            />
-                                        ) : (
-                                            <div className="flex h-full items-center justify-center">
-                                                <ShoppingBag className="h-20 w-20 text-muted-foreground/20" />
-                                            </div>
-                                        )}
+                    <div className="grid gap-8 md:grid-cols-3">
+                        {variants.map((variant) => (
+                            <Card key={variant.id} className="group overflow-hidden transition-all hover:shadow-xl">
+                                <div className="aspect-[4/3] overflow-hidden bg-gradient-to-br from-amber-100 to-orange-100 dark:from-amber-900 dark:to-orange-900">
+                                    <div className="flex h-full items-center justify-center">
+                                        <Package className="h-24 w-24 text-amber-600/30 transition-transform group-hover:scale-110 dark:text-amber-400/30" />
                                     </div>
-                                    <CardContent className="p-6">
-                                        <div className="mb-2 inline-block rounded-full bg-amber-100 px-3 py-1 text-xs font-medium text-amber-900 dark:bg-amber-900/30 dark:text-amber-100">
-                                            {product.variant.name}
-                                        </div>
-                                        <h3 className="mb-2 text-xl font-semibold">{product.name}</h3>
-                                        <div className="flex items-baseline gap-2">
-                                            <span className="text-2xl font-bold text-amber-600">{rupiahFormatter.format(product.price_regular)}</span>
-                                            {product.price_jar && (
-                                                <span className="text-sm text-muted-foreground">
-                                                    / {rupiahFormatter.format(product.price_jar)} (toples)
-                                                </span>
-                                            )}
-                                        </div>
-                                        <Button className="mt-4 w-full" variant="outline">
-                                            Lihat Detail
+                                </div>
+                                <CardContent className="p-6">
+                                    <h3 className="mb-2 text-xl font-semibold">{variant.name}</h3>
+                                    <p className="mb-4 text-sm text-muted-foreground">{variant.products_count} produk tersedia</p>
+                                    <Link href={`/products?variant=${variant.name.toLowerCase()}`}>
+                                        <Button className="w-full" variant="outline">
+                                            Lihat Produk
+                                            <ArrowRight className="ml-2 h-4 w-4" />
                                         </Button>
-                                    </CardContent>
-                                </Card>
-                            ))}
-                        </div>
-                    ) : (
-                        <div className="py-20 text-center">
-                            <ShoppingBag className="mx-auto mb-4 h-16 w-16 text-muted-foreground/20" />
-                            <p className="text-muted-foreground">Belum ada produk tersedia</p>
-                        </div>
-                    )}
-
-                    <div className="mt-12 text-center">
-                        <Button size="lg" variant="outline">
-                            Lihat Semua Produk
-                            <ArrowRight className="ml-2 h-4 w-4" />
-                        </Button>
+                                    </Link>
+                                </CardContent>
+                            </Card>
+                        ))}
                     </div>
                 </div>
             </section>
 
-            {/* Hampers Section */}
-            {featured_hampers.length > 0 && (
-                <section className="bg-muted/30 py-20">
-                    <div className="container mx-auto px-4">
-                        <div className="mb-12 text-center">
-                            <h2 className="mb-4 text-3xl font-bold md:text-4xl">Paket Hampers</h2>
-                            <p className="text-lg text-muted-foreground">Hadiah sempurna untuk orang-orang terkasih</p>
-                        </div>
-
-                        <div className="grid gap-8 md:grid-cols-3">
-                            {featured_hampers.map((hamper) => (
-                                <Card key={hamper.id} className="overflow-hidden transition-all hover:shadow-xl">
-                                    <div className="aspect-[4/3] overflow-hidden bg-muted">
-                                        {hamper.image ? (
-                                            <img src={`/storage/${hamper.image}`} alt={hamper.name} className="h-full w-full object-cover" />
-                                        ) : (
-                                            <div className="flex h-full items-center justify-center">
-                                                <ShoppingBag className="h-20 w-20 text-muted-foreground/20" />
-                                            </div>
-                                        )}
+            {/* Hampers Info Section */}
+            <section className="bg-gradient-to-br from-amber-100 to-orange-100 py-20 dark:from-amber-950 dark:to-orange-950">
+                <div className="container mx-auto max-w-7xl px-4">
+                    <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
+                        <div className="flex flex-col justify-center space-y-6">
+                            <div className="inline-flex w-fit items-center gap-2 rounded-full bg-amber-600 px-4 py-2 text-sm font-medium text-white">
+                                <Gift className="h-4 w-4" />
+                                Paket Hampers
+                            </div>
+                            <h2 className="text-3xl font-bold md:text-4xl">Hadiah Sempurna untuk Orang Terkasih</h2>
+                            <p className="text-lg text-muted-foreground">
+                                Kami menyediakan paket hampers eksklusif yang cocok untuk berbagai momen spesial Anda. Setiap paket dikemas dengan
+                                indah dan penuh cinta.
+                            </p>
+                            <div className="space-y-4">
+                                <div className="flex items-start gap-3">
+                                    <div className="rounded-full bg-amber-600 p-2">
+                                        <Package className="h-5 w-5 text-white" />
                                     </div>
-                                    <CardContent className="p-6">
-                                        <h3 className="mb-2 text-xl font-semibold">{hamper.name}</h3>
-                                        {hamper.description && (
-                                            <p className="mb-4 line-clamp-2 text-sm text-muted-foreground">{hamper.description}</p>
-                                        )}
-                                        <div className="mb-4 text-2xl font-bold text-amber-600">{rupiahFormatter.format(hamper.price)}</div>
-                                        <Button className="w-full">Pesan Sekarang</Button>
-                                    </CardContent>
-                                </Card>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-            )}
-
-            {/* Catalogs Section */}
-            {catalogs.length > 0 && (
-                <section className="py-20">
-                    <div className="container mx-auto px-4">
-                        <div className="mb-12 text-center">
-                            <h2 className="mb-4 text-3xl font-bold md:text-4xl">Katalog Terbaru</h2>
-                            <p className="text-lg text-muted-foreground">Lihat koleksi lengkap produk kami</p>
-                        </div>
-
-                        <div className="grid gap-6 md:grid-cols-3">
-                            {catalogs.map((catalog) => (
-                                <Card key={catalog.id} className="group overflow-hidden transition-all hover:shadow-lg">
-                                    <div className="aspect-video overflow-hidden bg-muted">
-                                        {catalog.image ? (
-                                            <img
-                                                src={`/storage/${catalog.image}`}
-                                                alt={catalog.title}
-                                                className="h-full w-full object-cover transition-transform group-hover:scale-105"
-                                            />
-                                        ) : (
-                                            <div className="flex h-full items-center justify-center">
-                                                <ShoppingBag className="h-16 w-16 text-muted-foreground/20" />
-                                            </div>
-                                        )}
+                                    <div>
+                                        <h4 className="font-semibold">Kemasan Premium dengan Toples Berkualitas</h4>
+                                        <p className="text-sm text-muted-foreground">Toples yang cantik dan dapat digunakan kembali</p>
                                     </div>
-                                    <CardContent className="p-6">
-                                        <h3 className="mb-2 text-lg font-semibold">{catalog.title}</h3>
-                                        {catalog.description && <p className="line-clamp-2 text-sm text-muted-foreground">{catalog.description}</p>}
-                                    </CardContent>
-                                </Card>
-                            ))}
+                                </div>
+                                <div className="flex items-start gap-3">
+                                    <div className="rounded-full bg-amber-600 p-2">
+                                        <Gift className="h-5 w-5 text-white" />
+                                    </div>
+                                    <div>
+                                        <h4 className="font-semibold">Bonus Greeting Card</h4>
+                                        <p className="text-sm text-muted-foreground">Kartu ucapan spesial untuk momen istimewa Anda</p>
+                                    </div>
+                                </div>
+                                <div className="flex items-start gap-3">
+                                    <div className="rounded-full bg-amber-600 p-2">
+                                        <Sparkles className="h-5 w-5 text-white" />
+                                    </div>
+                                    <div>
+                                        <h4 className="font-semibold">Paket Dapat Disesuaikan</h4>
+                                        <p className="text-sm text-muted-foreground">Pilih varian sesuai selera dan kebutuhan Anda</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <Link href="/hampers">
+                                    <Button size="lg" className="gap-2">
+                                        Lihat Paket Hampers
+                                        <ArrowRight className="h-4 w-4" />
+                                    </Button>
+                                </Link>
+                            </div>
                         </div>
-                    </div>
-                </section>
-            )}
-
-            {/* CTA Section */}
-            <section className="bg-gradient-to-br from-amber-600 to-orange-600 py-20 text-white">
-                <div className="container mx-auto px-4 text-center">
-                    <h2 className="mb-4 text-3xl font-bold md:text-4xl">Siap Memesan?</h2>
-                    <p className="mb-8 text-lg text-amber-100">Hubungi kami sekarang untuk pemesanan dan informasi lebih lanjut</p>
-                    <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
-                        <Button size="lg" variant="secondary" className="gap-2">
-                            <ShoppingBag className="h-5 w-5" />
-                            Pesan Sekarang
-                        </Button>
-                        <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-amber-600">
-                            Hubungi Kami
-                        </Button>
+                        <div className="relative">
+                            <div className="aspect-square overflow-hidden rounded-3xl bg-white/50 shadow-2xl dark:bg-black/20">
+                                <div className="flex h-full items-center justify-center p-8">
+                                    <Gift className="h-64 w-64 text-amber-600/20 dark:text-amber-400/20" />
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
 
+            {/* Location Section */}
+            <section className="py-20">
+                <div className="container mx-auto max-w-7xl px-4">
+                    <div className="mb-12 text-center">
+                        <h2 className="mb-4 text-3xl font-bold md:text-4xl">Kunjungi Toko Kami</h2>
+                        <p className="text-lg text-muted-foreground">Temukan lokasi toko kami dan belanja langsung kue kering favorit Anda</p>
+                    </div>
+
+                    <div className="grid gap-8 lg:grid-cols-2">
+                        <div className="space-y-6">
+                            <Card>
+                                <CardContent className="p-6">
+                                    <div className="mb-4 flex items-center gap-3">
+                                        <div className="rounded-full bg-amber-100 p-3 dark:bg-amber-900/30">
+                                            <MapPin className="h-6 w-6 text-amber-600 dark:text-amber-400" />
+                                        </div>
+                                        <h3 className="text-xl font-semibold">Alamat Toko</h3>
+                                    </div>
+                                    <div className="space-y-3">
+                                        <div>
+                                            <p className="font-medium">Serena Cookies</p>
+                                            <p className="text-sm text-muted-foreground">
+                                                Perumahan BPTP Blok B-7, Jl. Atletik, Kepuharjo, Kec. Karangploso, Kabupaten Malang, Jawa Timur
+                                            </p>
+                                        </div>
+                                        <div className="pt-4">
+                                            <h4 className="mb-2 font-medium">Jam Operasional:</h4>
+                                            <div className="space-y-1 text-sm text-muted-foreground">
+                                                <p>Senin - Jumat: 08.00 - 20.00 WIB</p>
+                                                <p>Sabtu - Minggu: 08.00 - 21.00 WIB</p>
+                                            </div>
+                                        </div>
+                                        <div className="pt-4">
+                                            <h4 className="mb-2 font-medium">Kontak:</h4>
+                                            <div className="space-y-1 text-sm text-muted-foreground">
+                                                <p>WhatsApp: +62 856-4979-6210</p>
+                                                <p>Instagram: @serenacookies</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="mt-6">
+                                        <a
+                                            href="https://maps.google.com/?q=Perumahan+BPTP+Blok+B-7+Jl+Atletik+Kepuharjo+Karangploso+Malang"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            <Button variant="outline" className="w-full gap-2">
+                                                <MapPin className="h-4 w-4" />
+                                                Buka di Google Maps
+                                            </Button>
+                                        </a>
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        </div>
+                        <div className="h-[500px] overflow-hidden rounded-xl border">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.5748392856445!2d112.60644931477624!3d-7.915891994300729!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e78810a1b8b8b8b%3A0x1b8b8b8b8b8b8b8b!2sKepuharjo%2C%20Karangploso%2C%20Malang%20Regency%2C%20East%20Java!5e0!3m2!1sen!2sid!4v1234567890123!5m2!1sen!2sid"
+                                width="100%"
+                                height="100%"
+                                style={{ border: 0 }}
+                                allowFullScreen
+                                loading="lazy"
+                                referrerPolicy="no-referrer-when-downgrade"
+                            ></iframe>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* WhatsApp Float Button */}
             <a
                 href="https://wa.me/6285649796210?text=Halo%2C%20saya%20ingin%20memesan%20produk%20Serena%20Cookies."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="fixed right-8 bottom-8 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-primary shadow-lg transition hover:bg-primary/90"
+                className="fixed right-8 bottom-8 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-green-500 shadow-lg transition hover:scale-110 hover:bg-green-600"
                 aria-label="Chat WhatsApp"
             >
-                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="25" height="25" viewBox="0,0,256,256">
-                    <g
-                        fill="#fcf7f2"
-                        fill-rule="nonzero"
-                        stroke="none"
-                        stroke-width="1"
-                        stroke-linecap="butt"
-                        stroke-linejoin="miter"
-                        stroke-miterlimit="10"
-                        stroke-dasharray=""
-                        stroke-dashoffset="0"
-                        font-family="none"
-                        font-weight="none"
-                        font-size="none"
-                        text-anchor="none"
-                    >
-                        <g transform="scale(8,8)">
-                            <path d="M16,3c-3.78906,0 -7.23437,1.11328 -9.78125,2.97656c-2.55078,1.85938 -4.21875,4.53125 -4.21875,7.52344c0,3.62891 2.47266,6.69922 6,8.55078v6.94922l6.74609,-5.0625c0.41016,0.03125 0.82422,0.0625 1.25391,0.0625c3.78906,0 7.23438,-1.11328 9.78125,-2.97266c2.55078,-1.86328 4.21875,-4.53516 4.21875,-7.52734c0,-2.99219 -1.66797,-5.66406 -4.21875,-7.52344c-2.54687,-1.86328 -5.99219,-2.97656 -9.78125,-2.97656zM16,5c3.39063,0 6.44531,1.01563 8.60156,2.58984c2.15625,1.57422 3.39844,3.65625 3.39844,5.91016c0,2.25391 -1.24219,4.33594 -3.39844,5.91016c-2.15625,1.57422 -5.21094,2.58984 -8.60156,2.58984c-0.49219,0 -0.98437,-0.02734 -1.47656,-0.07422l-0.38281,-0.03125l-4.14062,3.10547v-4.14062l-0.57812,-0.26562c-3.35156,-1.57422 -5.42187,-4.20703 -5.42187,-7.09375c0,-2.25391 1.24219,-4.33594 3.39844,-5.91016c2.15625,-1.57422 5.21094,-2.58984 8.60156,-2.58984z"></path>
-                        </g>
-                    </g>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" className="h-8 w-8">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
                 </svg>
             </a>
         </UserLayout>
