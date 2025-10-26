@@ -3,7 +3,6 @@
 import { DataTableColumnHeader } from '@/components/data-table-column-header';
 import DeleteConfirmDialog from '@/components/delete-dialog';
 import { Button } from '@/components/ui/button';
-import { Checkbox } from '@/components/ui/checkbox';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { rupiahFormatter } from '@/lib/utils';
 import { Link, router } from '@inertiajs/react';
@@ -69,27 +68,9 @@ export type Product = {
 
 export const columns: ColumnDef<Product>[] = [
     {
-        id: 'select',
-        header: ({ table }) => (
-            <Checkbox
-                checked={table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && 'indeterminate')}
-                onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-                aria-label="Select all"
-            />
-        ),
-        cell: ({ row }) => (
-            <Checkbox checked={row.getIsSelected()} onCheckedChange={(value) => row.toggleSelected(!!value)} aria-label="Select row" />
-        ),
-        enableSorting: false,
-        enableHiding: false,
-    },
-    {
-        accessorKey: 'no',
-        header: 'No',
-        cell: ({ row }) => {
-            const index = row.index + 1;
-            return <div className="font-medium">{index}</div>;
-        },
+        id: 'actions',
+        header: () => <div className="text-center"></div>,
+        cell: ({ row }) => <ProductActions product={row.original} />,
     },
     {
         accessorKey: 'image',
@@ -99,7 +80,7 @@ export const columns: ColumnDef<Product>[] = [
             return (
                 <div className="flex items-center">
                     {imageUrl ? (
-                        <img src={imageUrl} alt={row.original.name} className="h-16 rounded-md" />
+                        <img src={imageUrl} alt={row.original.name} className="max-h-24 max-w-24 rounded-md" />
                     ) : (
                         <div className="flex items-center justify-center rounded-md bg-muted px-4 py-6">
                             <span className="text-xs text-muted-foreground">No Image</span>
@@ -114,6 +95,13 @@ export const columns: ColumnDef<Product>[] = [
         header: ({ column }) => <DataTableColumnHeader column={column} title="Nama Produk" />,
         cell: ({ row }) => {
             return <div className="font-medium">{row.original.name}</div>;
+        },
+    },
+    {
+        accessorKey: 'description',
+        header: ({ column }) => <DataTableColumnHeader column={column} title="Deskripsi Product" />,
+        cell: ({ row }) => {
+            return <div className="font-medium">{row.original.description}</div>;
         },
     },
     {
@@ -138,10 +126,5 @@ export const columns: ColumnDef<Product>[] = [
             const price = row.original.price_jar;
             return <div className="font-medium">{price ? rupiahFormatter.format(parseFloat(price.toString())) : '-'}</div>;
         },
-    },
-    {
-        id: 'actions',
-        header: () => <div className="text-center">Aksi</div>,
-        cell: ({ row }) => <ProductActions product={row.original} />,
     },
 ];

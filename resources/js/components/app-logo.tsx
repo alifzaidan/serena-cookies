@@ -1,13 +1,11 @@
-import AppLogoIcon from './app-logo-icon';
-
 export default function AppLogo() {
     return (
         <>
-            <div className="flex aspect-square size-8 items-center justify-center rounded-md bg-sidebar-primary text-sidebar-primary-foreground">
-                <AppLogoIcon className="size-5 fill-current text-white dark:text-black" />
-            </div>
+            <img src="/assets/images/logo.webp" alt="Logo Aksara" className="block w-10 fill-current" />
             <div className="ml-1 grid flex-1 text-left text-sm">
-                <span className="mb-0.5 truncate leading-tight font-semibold">Serena Cookies</span>
+                <span className="mb-0.5 font-black-mango leading-tight font-semibold">
+                    Serena <span className="text-primary">Cookies</span>
+                </span>
             </div>
         </>
     );

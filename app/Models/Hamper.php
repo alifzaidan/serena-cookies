@@ -10,4 +10,9 @@ class Hamper extends Model
     use HasUuids;
 
     protected $guarded = ['created_at', 'updated_at'];
+
+    public function getImageUrlAttribute()
+    {
+        return $this->image ? asset('storage/' . $this->image) : null;
+    }
 }

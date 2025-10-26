@@ -34,8 +34,7 @@ class DatabaseSeeder extends Seeder
             'email_verified_at' => now(),
         ])->assignRole('admin');
 
-        Variant::create(['name' => 'Asin',]);
-        Variant::create(['name' => 'Manis',]);
-        Variant::create(['name' => 'Coklat',]);
+        $this->call(ProductSeeder::class);
+        $this->call(AgentSeeder::class);
     }
 }

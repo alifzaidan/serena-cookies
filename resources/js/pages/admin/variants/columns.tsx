@@ -67,12 +67,9 @@ export type Variant = {
 
 export const columns: ColumnDef<Variant>[] = [
     {
-        accessorKey: 'no',
-        header: 'No',
-        cell: ({ row }) => {
-            const index = row.index + 1;
-            return <div className="font-medium">{index}</div>;
-        },
+        id: 'actions',
+        header: () => <div className="text-center">Aksi</div>,
+        cell: ({ row }) => <VariantActions variant={row.original} />,
     },
     {
         accessorKey: 'name',
@@ -80,10 +77,5 @@ export const columns: ColumnDef<Variant>[] = [
         cell: ({ row }) => {
             return <div className="font-medium">{row.original.name}</div>;
         },
-    },
-    {
-        id: 'actions',
-        header: () => <div className="text-center">Aksi</div>,
-        cell: ({ row }) => <VariantActions variant={row.original} />,
     },
 ];

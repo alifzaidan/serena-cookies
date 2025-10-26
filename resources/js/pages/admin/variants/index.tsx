@@ -13,7 +13,7 @@ import { DataTable } from './data-table';
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Varian',
-        href: 'admin/variants',
+        href: '/admin/variants',
     },
 ];
 
