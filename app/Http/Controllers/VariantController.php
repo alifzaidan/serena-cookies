@@ -21,6 +21,7 @@ class VariantController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255|unique:variants,name',
+            'description' => 'nullable|string',
         ]);
 
         Variant::create($validated);
@@ -32,6 +33,7 @@ class VariantController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255|unique:variants,name,' . $variant->id,
+            'description' => 'nullable|string',
         ]);
 
         $variant->update($validated);

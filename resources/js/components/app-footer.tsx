@@ -46,7 +46,7 @@ const otherItems: OtherItem[] = [
 
 export default function AppFooter() {
     return (
-        <footer className="bg-gradient-to-t from-amber-50 to-orange-50 py-8 sm:py-16">
+        <footer className="bg-gradient-to-b from-amber-50 to-secondary py-8 sm:py-16">
             <div className="container mx-auto max-w-7xl px-4">
                 <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
                     <div className="lg:col-span-1">
@@ -64,7 +64,15 @@ export default function AppFooter() {
                         </div>
                         <div className="mt-2 flex items-center gap-2 text-sm">
                             <Phone className="h-4 w-4 flex-shrink-0 text-primary" />
-                            <span>+62085649796210</span>
+                            <a
+                                href="https://wa.me/6285649796210?text=Halo%2C%20saya%20ingin%20memesan%20produk%20Serena%20Cookies."
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="hover:text-primary"
+                                aria-label="Chat WhatsApp"
+                            >
+                                +62 856-4979-6210
+                            </a>
                         </div>
                     </div>
 

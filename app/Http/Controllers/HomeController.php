@@ -24,4 +24,9 @@ class HomeController extends Controller
             'variants' => $variants,
         ]);
     }
+
+    public function about()
+    {
+        return Inertia::render('user/about/index');
+    }
 }

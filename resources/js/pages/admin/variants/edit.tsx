@@ -10,6 +10,7 @@ interface EditVariantProps {
     variant: {
         id: string;
         name: string;
+        description?: string;
     };
     setOpen: (open: boolean) => void;
 }
@@ -17,8 +18,12 @@ interface EditVariantProps {
 export default function EditVariant({ variant, setOpen }: EditVariantProps) {
     const nameInput = useRef<HTMLInputElement>(null);
 
-    const { data, setData, put, processing, reset, errors, clearErrors } = useForm<Required<{ name: string }>>({
+    const { data, setData, put, processing, reset, errors, clearErrors } = useForm<{
+        name: string;
+        description?: string;
+    }>({
         name: variant.name,
+        description: variant.description || '',
     });
 
     useEffect(() => {
@@ -44,7 +49,7 @@ export default function EditVariant({ variant, setOpen }: EditVariantProps) {
         <DialogContent>
             <DialogTitle>Edit Varian</DialogTitle>
             <DialogDescription>Ubah nama varian.</DialogDescription>
-            <form className="space-y-6" onSubmit={updateVariant}>
+            <form className="space-y-3" onSubmit={updateVariant}>
                 <div className="grid gap-2">
                     <Label htmlFor="name" className="sr-only">
                         Nama Varian
@@ -57,6 +62,22 @@ export default function EditVariant({ variant, setOpen }: EditVariantProps) {
                         value={data.name}
                         onChange={(e) => setData('name', e.target.value)}
                         placeholder="Nama Varian"
+                        autoComplete="off"
+                    />
+                    <InputError message={errors.name} />
+                </div>
+                <div className="grid gap-2">
+                    <Label htmlFor="description" className="sr-only">
+                        Deskripsi (Opsional)
+                    </Label>
+                    <Input
+                        id="description"
+                        type="text"
+                        name="description"
+                        ref={nameInput}
+                        value={data.description}
+                        onChange={(e) => setData('description', e.target.value)}
+                        placeholder="Deskripsi Varian (Opsional)"
                         autoComplete="off"
                     />
                     <InputError message={errors.name} />

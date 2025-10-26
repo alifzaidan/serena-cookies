@@ -63,6 +63,7 @@ export default function VariantActions({ variant }: { variant: Variant }) {
 export type Variant = {
     id: string;
     name: string;
+    description?: string;
 };
 
 export const columns: ColumnDef<Variant>[] = [
@@ -76,6 +77,13 @@ export const columns: ColumnDef<Variant>[] = [
         header: ({ column }) => <DataTableColumnHeader column={column} title="Nama Varian" />,
         cell: ({ row }) => {
             return <div className="font-medium">{row.original.name}</div>;
+        },
+    },
+    {
+        accessorKey: 'description',
+        header: ({ column }) => <DataTableColumnHeader column={column} title="Deskripsi" />,
+        cell: ({ row }) => {
+            return <div>{row.original.description ?? '-'}</div>;
         },
     },
 ];

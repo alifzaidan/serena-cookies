@@ -15,9 +15,21 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
-        Variant::create(['name' => 'Manis']);
-        Variant::create(['name' => 'Asin']);
-        Variant::create(['name' => 'Coklat']);
+        Variant::create([
+            'id' => 1,
+            'name' => 'Manis',
+            'description' => 'Koleksi kue manis premium: perpaduan cokelat lembut, selai buah segar, dan keju manis yang menghadirkan kebahagiaan di setiap gigitan.'
+        ]);
+        Variant::create([
+            'id' => 2,
+            'name' => 'Asin',
+            'description' => 'Varian asin istimewa: keju panggang, ebi renyah, dan rempah rahasia yang memberi sensasi savory yang bikin ketagihan.'
+        ]);
+        Variant::create([
+            'id' => 3,
+            'name' => 'Coklat',
+            'description' => 'Rangkaian cokelat intens: choco-chip renyah, medeci lembut, dan perpaduan kacang untuk pengalaman cokelat sejati.'
+        ]);
 
         Product::create(['variant_id' => 1, 'name' => 'Almond Coklat', 'price_regular' => 105000, 'price_jar' => 70000,]);
         Product::create(['variant_id' => 1, 'name' => 'Almond Oatmeal', 'price_regular' => 105000, 'price_jar' => 0,]);
