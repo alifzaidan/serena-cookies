@@ -187,7 +187,7 @@ export default function Home({ all_products, variants }: HomeProps) {
             </div>
 
             {/* Features Section */}
-            <section className="bg-gradient-to-b from-secondary to-muted/30 py-16">
+            <section className="bg-gradient-to-b from-secondary to-muted/30 py-12">
                 <div className="container mx-auto max-w-6xl px-4">
                     <div className="mb-12 text-center">
                         <p className="text-sm font-medium tracking-wide text-primary uppercase">Kenapa Memilih Kami</p>
@@ -257,10 +257,9 @@ export default function Home({ all_products, variants }: HomeProps) {
             </section>
 
             {/* Variants Section */}
-            <section className="bg-gradient-to-b from-muted/30 to-secondary py-8 md:py-16">
+            <section className="bg-gradient-to-b from-muted/30 to-secondary py-8 md:py-12">
                 <div className="container mx-auto max-w-7xl px-4">
                     <div className="rounded-3xl bg-white p-6 shadow-sm md:p-10">
-                        {/* Bagian atas: judul & deskripsi */}
                         <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
                             <div className="md:w-1/2">
                                 <p className="text-sm font-medium tracking-wide text-primary uppercase">VARIAN SERENA COOKIES</p>
@@ -278,7 +277,6 @@ export default function Home({ all_products, variants }: HomeProps) {
 
                         <div className="my-8 h-px w-full bg-gray-200" />
 
-                        {/* Daftar varian */}
                         <div className="grid gap-8 sm:grid-cols-2 md:gap-10 lg:grid-cols-3">
                             {variants.map((variant) => {
                                 return (
