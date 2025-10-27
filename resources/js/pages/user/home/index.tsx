@@ -1,5 +1,4 @@
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
 import { InfiniteSlider } from '@/components/ui/infinite-slider';
 import { TextEffect } from '@/components/ui/text-effect';
 import UserLayout from '@/layouts/user-layout';
@@ -120,7 +119,7 @@ export default function Home({ all_products, variants }: HomeProps) {
                                     Cookies
                                 </TextEffect>
                             </div>
-                            <TextEffect per="word" delay={1} speedReveal={2} className="md:text-md text-base">
+                            <TextEffect per="word" delay={1} speedReveal={2} className="text-base">
                                 Kue kering berkualitas premium dengan cita rasa istimewa. Dibuat dengan bahan pilihan terbaik untuk kebahagiaan
                                 keluarga Anda.
                             </TextEffect>
@@ -158,7 +157,7 @@ export default function Home({ all_products, variants }: HomeProps) {
                                 transition={{ duration: 0.5, delay: 1.2 }}
                                 className="absolute top-8 -right-4 rounded-2xl bg-secondary p-4 shadow-xl dark:bg-gray-900"
                             >
-                                <Cookie className="h-6 w-6 text-amber-600 md:h-8 md:w-8" />
+                                <Cookie className="h-6 w-6 text-secondary-foreground md:h-8 md:w-8" />
                             </motion.div>
                             <motion.div
                                 initial={{ opacity: 0, x: -20 }}
@@ -196,58 +195,71 @@ export default function Home({ all_products, variants }: HomeProps) {
                     </div>
 
                     <div className="grid gap-8 md:grid-cols-2">
-                        <Card className="rounded-3xl bg-secondary shadow-sm">
-                            <CardContent className="p-8">
-                                <h3 className="text-5xl font-bold text-primary">3k+</h3>
+                        <div className="relative overflow-hidden rounded-3xl bg-secondary shadow-sm">
+                            <div className="absolute -right-12 -bottom-24 h-56 w-56 rounded-full bg-secondary-foreground/30 blur-3xl" aria-hidden />
+                            <div className="p-8">
+                                <h3 className="font-black-mango text-5xl font-bold text-primary">3.000+</h3>
                                 <p className="mt-3 text-lg font-semibold">Pelanggan Setia</p>
                                 <p className="mt-1 text-sm text-muted-foreground">
                                     Lebih dari 3.000 pelanggan telah mempercayakan momen spesial mereka bersama Serena Cookies.
                                 </p>
-                            </CardContent>
-                        </Card>
+                            </div>
+                        </div>
 
-                        <Card className="rounded-3xl bg-secondary shadow-sm">
-                            <CardContent className="flex flex-col gap-4 p-8">
+                        <div className="relative overflow-hidden rounded-3xl bg-secondary shadow-sm">
+                            <div className="z-20 flex flex-col gap-4 p-8">
                                 <div className="flex items-center gap-3">
-                                    <Clock className="h-8 w-8 text-amber-600" />
-                                    <h3 className="text-lg font-semibold">Pengiriman Cepat & Fleksibel</h3>
+                                    <Clock className="h-6 w-6 text-primary" />
+                                    <h3 className="font-black-mango text-xl font-semibold text-primary md:text-2xl">Pengiriman Cepat & Fleksibel</h3>
                                 </div>
-                                <p className="text-sm text-muted-foreground">
+                                <p className="z-40 text-sm text-muted-foreground">
                                     Pesanan dapat dikirim kapan saja sesuai kebutuhan Anda, dengan kemasan tetap aman dan rapi.
                                 </p>
-                            </CardContent>
-                        </Card>
+                            </div>
+                            <div className="absolute right-2 -bottom-24 md:-bottom-18 lg:right-12">
+                                <div className="relative">
+                                    <div className="absolute inset-0 rounded-full bg-secondary-foreground/30 blur-3xl" />
+                                    <img
+                                        src="/assets/images/rocket.png"
+                                        alt="Pengiriman Cepat"
+                                        className="relative h-44 text-primary drop-shadow-lg"
+                                    />
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div className="mt-8">
-                        <Card className="rounded-3xl bg-secondary shadow-sm">
-                            <CardContent className="p-8 md:flex md:items-center md:justify-between md:gap-8">
-                                <div className="md:w-1/2">
-                                    <h3 className="text-lg font-semibold">Kualitas Terjaga</h3>
-                                    <p className="mt-2 text-sm text-muted-foreground">
-                                        Nikmati kualitas dan rasa yang konsisten tanpa khawatir perubahan cita rasa atau kualitas bahan baku.
+                        <div className="relative overflow-hidden rounded-3xl bg-secondary shadow-sm">
+                            <div className="absolute -bottom-24 -left-12 h-56 w-56 rounded-full bg-secondary-foreground/30 blur-3xl" aria-hidden />
+                            <div className="absolute -top-24 left-2/3 h-44 w-44 -translate-x-1/2 rounded-full bg-primary/30 blur-3xl" aria-hidden />
+                            <div className="relative p-8">
+                                <div className="space-y-4 md:w-1/2">
+                                    <div className="flex items-center gap-2">
+                                        <h3 className="font-black-mango text-xl font-semibold text-primary md:text-2xl">Kualitas Terjaga</h3>
+                                        <Sparkles className="h-6 w-6 text-primary" />
+                                    </div>
+                                    <p className="mt-2 mb-8 text-sm text-muted-foreground lg:mb-20">
+                                        Nikmati kualitas dan cita rasa yang konsisten. Kami menggunakan bahan pilihan serta proses produksi yang
+                                        terstandarisasi. Komitmen ini menjamin setiap toples Serena Cookies selalu menghadirkan kenikmatan yang sama,
+                                        baik untuk keseharian maupun momen spesial bersama keluarga.
                                     </p>
                                 </div>
-                                {/* Grafik placeholder */}
-                                <div className="mt-6 h-48 w-full rounded-xl bg-gradient-to-t from-amber-100 to-amber-50 md:mt-0 md:w-1/2">
-                                    <div className="flex h-full items-end justify-start p-4">
-                                        <div className="h-16 w-1/5 rounded-md bg-amber-200"></div>
-                                        <div className="mx-2 h-24 w-1/5 rounded-md bg-amber-300"></div>
-                                        <div className="mx-2 h-32 w-1/5 rounded-md bg-amber-400"></div>
-                                        <div className="mx-2 h-36 w-1/5 rounded-md bg-amber-500"></div>
-                                        <div className="mx-2 h-40 w-1/5 rounded-md bg-amber-600"></div>
-                                    </div>
-                                </div>
-                            </CardContent>
-                        </Card>
+                                <img
+                                    src="/assets/images/about.jpg"
+                                    alt="Kualitas Terjaga"
+                                    className="right-16 bottom-0 w-[420px] rounded-2xl lg:absolute lg:rounded-t-2xl lg:rounded-b-none"
+                                />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
 
             {/* Variants Section */}
-            <section className="bg-muted/30 py-16">
-                <div className="container mx-auto max-w-7xl px-6">
-                    <div className="rounded-3xl bg-white p-10 shadow-sm">
+            <section className="bg-gradient-to-b from-muted/30 to-secondary py-8 md:py-16">
+                <div className="container mx-auto max-w-7xl px-4">
+                    <div className="rounded-3xl bg-white p-6 shadow-sm md:p-10">
                         {/* Bagian atas: judul & deskripsi */}
                         <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
                             <div className="md:w-1/2">
@@ -267,28 +279,38 @@ export default function Home({ all_products, variants }: HomeProps) {
                         <div className="my-8 h-px w-full bg-gray-200" />
 
                         {/* Daftar varian */}
-                        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+                        <div className="grid gap-8 sm:grid-cols-2 md:gap-10 lg:grid-cols-3">
                             {variants.map((variant) => {
                                 return (
-                                    <div
-                                        key={variant.id}
-                                        className="flex flex-col items-center rounded-2xl bg-secondary p-6 text-center shadow transition-all"
-                                    >
-                                        <h3 className="font-black-mango text-xl font-semibold text-primary md:text-2xl">{variant.name}</h3>
-                                        {/* Deskripsi varian */}
-                                        {variant.description ? (
-                                            <p className="mt-2 mb-2 text-sm text-gray-600">{variant.description}</p>
-                                        ) : (
-                                            <p className="mt-2 mb-2 text-sm text-gray-600 italic">Deskripsi belum tersedia</p>
-                                        )}
-                                        <p className="my-4 text-xs text-gray-600 italic">{variant.products_count} produk tersedia dari varian ini.</p>
-                                        <Link href={`/products?variant=${variant.name.toLowerCase()}`}>
-                                            <Button variant="outline">
-                                                Lihat Produk
-                                                <ArrowRight className="ml-2 h-4 w-4" />
-                                            </Button>
-                                        </Link>
-                                    </div>
+                                    <Link key={variant.id} href={`/products?variant=${variant.name.toLowerCase()}`}>
+                                        <div className="group flex cursor-pointer flex-col items-center rounded-2xl bg-secondary p-6 text-center shadow transition-colors duration-200 hover:bg-primary">
+                                            <h3 className="font-black-mango text-xl font-semibold text-primary transition-colors duration-200 group-hover:text-secondary md:text-2xl">
+                                                {variant.name}
+                                            </h3>
+                                            {variant.description ? (
+                                                <p className="mt-2 mb-2 text-sm text-gray-600 transition-colors duration-200 group-hover:text-secondary">
+                                                    {variant.description}
+                                                </p>
+                                            ) : (
+                                                <p className="mt-2 mb-2 text-sm text-gray-600 italic transition-colors duration-200 group-hover:text-secondary">
+                                                    Deskripsi belum tersedia
+                                                </p>
+                                            )}
+                                            <p className="my-4 text-xs text-gray-600 italic transition-colors duration-200 group-hover:text-secondary">
+                                                {variant.products_count} produk tersedia dari varian ini.
+                                            </p>
+                                            <div className="flex justify-center">
+                                                <Button variant="outline" className="gap-2 group-hover:hidden">
+                                                    Lihat Produk
+                                                    <ArrowRight className="ml-2 h-4 w-4" />
+                                                </Button>
+                                                <Button variant="secondary" className="hidden gap-2 group-hover:inline-flex">
+                                                    Lihat Produk
+                                                    <ArrowRight className="ml-2 h-4 w-4" />
+                                                </Button>
+                                            </div>
+                                        </div>
+                                    </Link>
                                 );
                             })}
                         </div>
@@ -301,7 +323,7 @@ export default function Home({ all_products, variants }: HomeProps) {
                 <div className="container mx-auto max-w-7xl px-4">
                     <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
                         <div className="flex flex-col justify-center space-y-6">
-                            <div className="inline-flex w-fit items-center gap-2 rounded-full bg-amber-600 px-4 py-2 text-sm font-medium text-white">
+                            <div className="inline-flex w-fit items-center gap-2 rounded-full bg-secondary-foreground px-4 py-2 text-sm font-medium text-white">
                                 <Gift className="h-4 w-4" />
                                 Paket Hampers
                             </div>
@@ -312,7 +334,7 @@ export default function Home({ all_products, variants }: HomeProps) {
                             </p>
                             <div className="space-y-4">
                                 <div className="flex items-start gap-3">
-                                    <div className="rounded-full bg-amber-600 p-2">
+                                    <div className="rounded-full bg-secondary-foreground p-2">
                                         <Package className="h-5 w-5 text-white" />
                                     </div>
                                     <div>
@@ -321,7 +343,7 @@ export default function Home({ all_products, variants }: HomeProps) {
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-3">
-                                    <div className="rounded-full bg-amber-600 p-2">
+                                    <div className="rounded-full bg-secondary-foreground p-2">
                                         <Gift className="h-5 w-5 text-white" />
                                     </div>
                                     <div>
@@ -330,7 +352,7 @@ export default function Home({ all_products, variants }: HomeProps) {
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-3">
-                                    <div className="rounded-full bg-amber-600 p-2">
+                                    <div className="rounded-full bg-secondary-foreground p-2">
                                         <Sparkles className="h-5 w-5 text-white" />
                                     </div>
                                     <div>
@@ -348,13 +370,11 @@ export default function Home({ all_products, variants }: HomeProps) {
                                 </Link>
                             </div>
                         </div>
-                        <div className="relative">
-                            <div className="aspect-square overflow-hidden rounded-3xl bg-white/50 shadow-2xl dark:bg-black/20">
-                                <div className="flex h-full items-center justify-center p-8">
-                                    <Gift className="h-64 w-64 text-amber-600/20 dark:text-amber-400/20" />
-                                </div>
-                            </div>
-                        </div>
+                        <img
+                            src="/assets/images/hampers.jpg"
+                            alt="Paket Hampers Serena Cookies"
+                            className="rounded-3xl border-4 border-secondary-foreground shadow-lg"
+                        />
                     </div>
                 </div>
             </section>
@@ -369,11 +389,11 @@ export default function Home({ all_products, variants }: HomeProps) {
 
                     <div className="grid gap-8 lg:grid-cols-2">
                         <div className="space-y-6">
-                            <Card>
-                                <CardContent className="p-6">
+                            <div className="rounded-3xl bg-secondary shadow-sm">
+                                <div className="p-6">
                                     <div className="mb-4 flex items-center gap-3">
                                         <div className="rounded-full bg-amber-100 p-3 dark:bg-amber-900/30">
-                                            <MapPin className="h-6 w-6 text-amber-600 dark:text-amber-400" />
+                                            <MapPin className="h-6 w-6 text-primary dark:text-amber-400" />
                                         </div>
                                         <h3 className="font-black-mango text-xl font-semibold">Alamat Toko</h3>
                                     </div>
@@ -442,12 +462,12 @@ export default function Home({ all_products, variants }: HomeProps) {
                                             </div>
                                         </div>
                                     </div>
-                                </CardContent>
-                            </Card>
+                                </div>
+                            </div>
                         </div>
                         <div className="min-h-[400px] overflow-hidden rounded-xl border">
                             <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.5748392856445!2d112.60644931477624!3d-7.915891994300729!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e78810a1b8b8b8b%3A0x1b8b8b8b8b8b8b8b!2sKepuharjo%2C%20Karangploso%2C%20Malang%20Regency%2C%20East%20Java!5e0!3m2!1sen!2sid!4v1234567890123!5m2!1sen!2sid"
+                                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d553.2967313010594!2d112.62540980340901!3d-7.913166332428869!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sid!2sid!4v1761537989785!5m2!1sid!2sid"
                                 width="100%"
                                 height="100%"
                                 style={{ border: 0 }}
