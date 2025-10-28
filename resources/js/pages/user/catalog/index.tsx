@@ -3,14 +3,7 @@ import { TextEffect } from '@/components/ui/text-effect';
 import UserLayout from '@/layouts/user-layout';
 import { Head, Link } from '@inertiajs/react';
 import { motion } from 'framer-motion';
-import { ArrowRight, BookOpen, Cookie, Gift, Package, ShoppingBag, Sparkles } from 'lucide-react';
-
-interface Variant {
-    id: string;
-    name: string;
-    products_count: number;
-    description?: string;
-}
+import { ArrowRight, BookOpen, Gift, MessageCircle, Package, ShoppingBag, Sparkles } from 'lucide-react';
 
 interface Catalog {
     id: string;
@@ -28,12 +21,11 @@ interface Hamper {
 }
 
 interface CatalogProps {
-    variants: Variant[];
     catalogs: Catalog[];
     hampers: Hamper[];
 }
 
-export default function Catalog({ variants, catalogs, hampers }: CatalogProps) {
+export default function Catalog({ catalogs, hampers }: CatalogProps) {
     const formatPrice = (price: number) => {
         return new Intl.NumberFormat('id-ID', {
             style: 'currency',
@@ -125,50 +117,56 @@ export default function Catalog({ variants, catalogs, hampers }: CatalogProps) {
                 </div>
             </section>
 
-            {/* Product Variants Section */}
-            <section className="bg-gradient-to-b from-secondary to-amber-50 py-12 md:py-16">
-                <div className="container mx-auto max-w-7xl px-4">
-                    <div className="mb-12 text-center">
-                        <p className="text-sm font-medium tracking-wide text-primary uppercase">Varian Produk</p>
-                        <h2 className="mt-2 font-black-mango text-3xl font-bold md:text-4xl">Pilih Varian Favorit Anda</h2>
-                        <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-                            Kami menyediakan berbagai varian kue kering dengan cita rasa yang berbeda untuk memenuhi setiap selera
-                        </p>
-                    </div>
+            {/* Catalogs Section */}
+            {catalogs.length > 0 && (
+                <section className="bg-gradient-to-b from-secondary to-amber-50 py-12 md:py-16">
+                    <div className="container mx-auto max-w-7xl px-4">
+                        <div className="mb-12 text-center">
+                            <p className="text-sm font-medium tracking-wide text-primary uppercase">Katalog Serena Cookies</p>
+                            <h2 className="mt-2 font-black-mango text-3xl font-bold md:text-4xl">Katalog Produk Kami</h2>
+                            <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
+                                Lihat katalog lengkap produk kami untuk informasi detail tentang varian dan harga
+                            </p>
+                        </div>
 
-                    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                        {variants.map((variant, index) => (
-                            <motion.div
-                                key={variant.id}
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.5, delay: index * 0.1 }}
-                            >
-                                <Link href={`/products?variant=${variant.name.toLowerCase()}`}>
-                                    <div className="group relative overflow-hidden rounded-2xl bg-secondary p-6 shadow-sm transition-all duration-300 hover:shadow-xl">
-                                        <div className="absolute -top-8 -right-8 h-32 w-32 rounded-full bg-primary/10 blur-2xl transition-all duration-300 group-hover:bg-primary/20" />
-                                        <div className="relative z-10">
-                                            <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 transition-colors duration-300 group-hover:bg-primary">
-                                                <Cookie className="h-8 w-8 text-primary transition-colors duration-300 group-hover:text-secondary" />
-                                            </div>
-                                            <h3 className="font-black-mango text-2xl font-bold text-primary">{variant.name}</h3>
-                                            {variant.description ? (
-                                                <p className="mt-2 line-clamp-2 text-sm text-muted-foreground">{variant.description}</p>
-                                            ) : (
-                                                <p className="mt-2 text-sm text-muted-foreground italic">Deskripsi belum tersedia</p>
-                                            )}
-                                            <div className="mt-4 flex items-center justify-between">
-                                                <span className="text-sm text-muted-foreground">{variant.products_count} produk tersedia</span>
-                                                <ArrowRight className="h-5 w-5 text-primary transition-transform duration-300 group-hover:translate-x-1" />
-                                            </div>
+                        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                            {catalogs.map((catalog, index) => (
+                                <motion.div
+                                    key={catalog.id}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                                    className="group relative overflow-hidden rounded-2xl bg-secondary shadow-sm transition-all duration-300 hover:shadow-xl"
+                                >
+                                    <div className="absolute -top-8 -right-8 h-32 w-32 rounded-full bg-primary/10 blur-2xl transition-all duration-300 group-hover:bg-primary/20" />
+
+                                    {/* Image */}
+                                    {catalog.image && (
+                                        <div className="relative overflow-hidden rounded-t-2xl">
+                                            <img
+                                                src={`/storage/${catalog.image}`}
+                                                alt={catalog.title}
+                                                className="h-full object-cover transition-transform duration-300"
+                                            />
                                         </div>
+                                    )}
+
+                                    {/* Content */}
+                                    <div className="relative z-10 p-6">
+                                        <div className="mb-4 hidden h-12 w-12 items-center justify-center rounded-xl bg-primary/10 transition-colors duration-300 group-hover:bg-primary md:inline-flex">
+                                            <Package className="h-6 w-6 text-primary transition-colors duration-300 group-hover:text-secondary" />
+                                        </div>
+                                        <h3 className="font-black-mango text-lg font-bold text-primary md:text-xl">{catalog.title}</h3>
+                                        {catalog.description && (
+                                            <p className="mt-2 line-clamp-3 text-sm text-muted-foreground">{catalog.description}</p>
+                                        )}
                                     </div>
-                                </Link>
-                            </motion.div>
-                        ))}
+                                </motion.div>
+                            ))}
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            )}
 
             {/* Hampers Section */}
             {hampers.length > 0 && (
@@ -182,7 +180,7 @@ export default function Catalog({ variants, catalogs, hampers }: CatalogProps) {
                             </p>
                         </div>
 
-                        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                        <div className="grid grid-cols-2 gap-6 lg:grid-cols-3">
                             {hampers.map((hamper, index) => (
                                 <motion.div
                                     key={hamper.id}
@@ -215,12 +213,10 @@ export default function Catalog({ variants, catalogs, hampers }: CatalogProps) {
                                     <div className="relative z-10 flex flex-1 flex-col p-5">
                                         <h3 className="line-clamp-2 font-black-mango text-xl font-bold text-primary">{hamper.name}</h3>
 
-                                        {hamper.description && (
-                                            <p className="mt-2 line-clamp-3 text-sm text-muted-foreground">{hamper.description}</p>
-                                        )}
+                                        {hamper.description && <p className="mt-2 text-sm text-muted-foreground">{hamper.description}</p>}
 
                                         <div className="mt-4 flex-1">
-                                            <div className="flex items-center justify-between border-t border-border/50 pt-4">
+                                            <div className="flex flex-col justify-between border-t border-border/50 pt-4 md:flex-row md:items-center">
                                                 <span className="text-xs font-medium text-muted-foreground">Harga Mulai</span>
                                                 <span className="font-black-mango text-xl font-bold text-primary">{formatPrice(hamper.price)}</span>
                                             </div>
@@ -233,62 +229,11 @@ export default function Catalog({ variants, catalogs, hampers }: CatalogProps) {
                                                 rel="noopener noreferrer"
                                             >
                                                 <Button size="sm" className="w-full gap-2 group-hover:bg-primary/90">
-                                                    <ShoppingBag className="h-4 w-4" />
+                                                    <ShoppingBag className="hidden h-4 w-4 sm:block" />
                                                     Pesan Sekarang
                                                 </Button>
                                             </a>
                                         </div>
-                                    </div>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-            )}
-
-            {/* Catalogs Section */}
-            {catalogs.length > 0 && (
-                <section className="bg-gradient-to-b from-secondary to-amber-50 py-12 md:py-16">
-                    <div className="container mx-auto max-w-7xl px-4">
-                        <div className="mb-12 text-center">
-                            <p className="text-sm font-medium tracking-wide text-primary uppercase">Katalog Digital</p>
-                            <h2 className="mt-2 font-black-mango text-3xl font-bold md:text-4xl">Katalog Produk Kami</h2>
-                            <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-                                Lihat katalog lengkap produk kami untuk informasi detail tentang varian dan harga
-                            </p>
-                        </div>
-
-                        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                            {catalogs.map((catalog, index) => (
-                                <motion.div
-                                    key={catalog.id}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                                    className="group relative overflow-hidden rounded-2xl bg-secondary shadow-sm transition-all duration-300 hover:shadow-xl"
-                                >
-                                    <div className="absolute -top-8 -right-8 h-32 w-32 rounded-full bg-primary/10 blur-2xl transition-all duration-300 group-hover:bg-primary/20" />
-
-                                    {/* Image */}
-                                    {catalog.image && (
-                                        <div className="relative aspect-[4/3] overflow-hidden rounded-t-2xl">
-                                            <img
-                                                src={`/storage/${catalog.image}`}
-                                                alt={catalog.title}
-                                                className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
-                                            />
-                                        </div>
-                                    )}
-
-                                    {/* Content */}
-                                    <div className="relative z-10 p-6">
-                                        <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 transition-colors duration-300 group-hover:bg-primary">
-                                            <Package className="h-6 w-6 text-primary transition-colors duration-300 group-hover:text-secondary" />
-                                        </div>
-                                        <h3 className="line-clamp-2 font-black-mango text-xl font-bold text-primary">{catalog.title}</h3>
-                                        {catalog.description && (
-                                            <p className="mt-2 line-clamp-3 text-sm text-muted-foreground">{catalog.description}</p>
-                                        )}
                                     </div>
                                 </motion.div>
                             ))}
@@ -313,13 +258,17 @@ export default function Catalog({ variants, catalogs, hampers }: CatalogProps) {
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            <Button size="lg" variant="secondary" className="gap-2">
-                                <ShoppingBag className="h-5 w-5" />
+                            <Button
+                                size="lg"
+                                variant="secondary"
+                                className="gap-2 bg-green-200 text-green-800 hover:bg-green-200 hover:text-green-900"
+                            >
+                                <MessageCircle className="h-5 w-5" />
                                 Pesan Via WhatsApp
                             </Button>
                         </a>
                         <Link href="/products">
-                            <Button size="lg" variant="outline" className="gap-2 border-secondary text-secondary hover:bg-secondary/10">
+                            <Button size="lg" variant="outline" className="gap-2">
                                 Lihat Semua Produk
                                 <ArrowRight className="h-4 w-4" />
                             </Button>
