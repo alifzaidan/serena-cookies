@@ -27,7 +27,7 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['required', 'string', 'email'],
+            'email_or_phone' => ['required', 'string'],
             'password' => ['required', 'string'],
         ];
     }
@@ -41,15 +41,27 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
-            RateLimiter::hit($this->throttleKey());
+        $login = $this->input('email_or_phone');
+        $password = $this->input('password');
 
-            throw ValidationException::withMessages([
-                'email' => __('auth.failed'),
-            ]);
+        // Coba autentikasi dengan email
+        if (Auth::attempt(['email' => $login, 'password' => $password], $this->boolean('remember'))) {
+            RateLimiter::clear($this->throttleKey());
+            return;
         }
 
-        RateLimiter::clear($this->throttleKey());
+        // Jika gagal, coba dengan phone
+        if (Auth::attempt(['phone' => $login, 'password' => $password], $this->boolean('remember'))) {
+            RateLimiter::clear($this->throttleKey());
+            return;
+        }
+
+        // Jika keduanya gagal
+        RateLimiter::hit($this->throttleKey());
+
+        throw ValidationException::withMessages([
+            'email_or_phone' => __('auth.failed'),
+        ]);
     }
 
     /**
@@ -68,7 +80,7 @@ class LoginRequest extends FormRequest
         $seconds = RateLimiter::availableIn($this->throttleKey());
 
         throw ValidationException::withMessages([
-            'email' => __('auth.throttle', [
+            'email_or_phone' => __('auth.throttle', [
                 'seconds' => $seconds,
                 'minutes' => ceil($seconds / 60),
             ]),
@@ -80,6 +92,6 @@ class LoginRequest extends FormRequest
      */
     public function throttleKey(): string
     {
-        return Str::transliterate(Str::lower($this->string('email')).'|'.$this->ip());
+        return Str::transliterate(Str::lower($this->string('email_or_phone')) . '|' . $this->ip());
     }
 }

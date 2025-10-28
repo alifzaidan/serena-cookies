@@ -9,7 +9,7 @@ import { Label } from '@/components/ui/label';
 import AuthLayout from '@/layouts/auth-layout';
 
 type LoginForm = {
-    email: string;
+    email_or_phone: string;
     password: string;
     remember: boolean;
 };
@@ -21,7 +21,7 @@ interface LoginProps {
 
 export default function Login({ status, canResetPassword }: LoginProps) {
     const { data, setData, post, processing, errors, reset } = useForm<Required<LoginForm>>({
-        email: '',
+        email_or_phone: '',
         password: '',
         remember: false,
     });
@@ -40,19 +40,19 @@ export default function Login({ status, canResetPassword }: LoginProps) {
             <form className="flex flex-col gap-6" onSubmit={submit}>
                 <div className="grid gap-6">
                     <div className="grid gap-2">
-                        <Label htmlFor="email">Email</Label>
+                        <Label htmlFor="email_or_phone">Email atau Nomor Telepon</Label>
                         <Input
-                            id="email"
-                            type="email"
+                            id="email_or_phone"
+                            type="text"
                             required
                             autoFocus
                             tabIndex={1}
-                            autoComplete="email"
-                            value={data.email}
-                            onChange={(e) => setData('email', e.target.value)}
-                            placeholder="email@example.com"
+                            autoComplete="username"
+                            value={data.email_or_phone}
+                            onChange={(e) => setData('email_or_phone', e.target.value)}
+                            placeholder="Masukkan email atau nomor telepon"
                         />
-                        <InputError message={errors.email} />
+                        <InputError message={errors.email_or_phone} />
                     </div>
 
                     <div className="grid gap-2">
