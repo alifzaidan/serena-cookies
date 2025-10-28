@@ -35,14 +35,6 @@ const mainNavItems: NavItem[] = [
         title: 'Info Agen & Reseller',
         href: '/agents',
     },
-    {
-        title: 'Hubungi Kami',
-        href: '/contact',
-    },
-    {
-        title: 'Lokasi Toko',
-        href: '/location',
-    },
 ];
 
 const productVariants = [
@@ -74,7 +66,7 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
 
     return (
         <>
-            <div className="fixed top-0 right-0 left-0 z-50 bg-secondary/20 backdrop-blur-md dark:border-sidebar-border/30 dark:bg-gray-950/80">
+            <div className="fixed top-0 right-0 left-0 z-50 bg-secondary/20 backdrop-blur-md">
                 <div className="mx-auto flex h-16 items-center px-4 md:max-w-7xl">
                     {/* Mobile Menu */}
                     <div className="lg:hidden">

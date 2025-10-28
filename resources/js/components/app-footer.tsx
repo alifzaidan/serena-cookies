@@ -27,10 +27,6 @@ const serviceItems: ServiceItem[] = [
         title: 'Info Agen & Reseller',
         href: '/agents',
     },
-    {
-        title: 'Lokasi Toko',
-        href: '/location',
-    },
 ];
 
 const otherItems: OtherItem[] = [
