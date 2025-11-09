@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('variant_id')->constrained('variants')->onDelete('cascade');
             $table->string('name');
             $table->text('description')->nullable();
+            $table->integer('net_weight')->default(0);
             $table->bigInteger('price_regular')->default(0);
             $table->bigInteger('price_jar')->default(0);
             $table->string('image')->nullable();

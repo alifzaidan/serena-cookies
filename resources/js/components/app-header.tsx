@@ -27,8 +27,12 @@ const mainNavItems: NavItem[] = [
         href: '/about',
     },
     {
-        title: 'Harga & Katalog',
-        href: '/catalog',
+        title: 'Katalog',
+        href: '/catalogs',
+    },
+    {
+        title: 'Hampers',
+        href: '/hampers',
     },
     {
         title: 'Info Agen & Reseller',
@@ -65,7 +69,7 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
 
     return (
         <>
-            <div className="fixed top-0 right-0 left-0 z-50 bg-secondary/20 backdrop-blur-md">
+            <div className="fixed top-0 right-0 left-0 z-50 bg-secondary/50 backdrop-blur-md">
                 <div className="mx-auto flex h-16 items-center px-4 md:max-w-7xl">
                     {/* Mobile Menu */}
                     <div className="lg:hidden">
@@ -166,16 +170,32 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
 
                                 <NavigationMenuItem className="relative flex h-full items-center">
                                     <Link
-                                        href="/catalog"
+                                        href="/catalogs"
                                         className={cn(
                                             navigationMenuTriggerStyle(),
-                                            page.url === '/catalog' && activeItemStyles,
+                                            page.url === '/catalogs' && activeItemStyles,
                                             'h-9 cursor-pointer px-3',
                                         )}
                                     >
-                                        Harga & Katalog
+                                        Katalog
                                     </Link>
-                                    {page.url === '/catalog' && (
+                                    {page.url === '/catalogs' && (
+                                        <div className="absolute bottom-4 left-1/2 h-0.5 w-3/4 -translate-x-1/2 bg-primary dark:bg-secondary"></div>
+                                    )}
+                                </NavigationMenuItem>
+
+                                <NavigationMenuItem className="relative flex h-full items-center">
+                                    <Link
+                                        href="/hampers"
+                                        className={cn(
+                                            navigationMenuTriggerStyle(),
+                                            page.url === '/hampers' && activeItemStyles,
+                                            'h-9 cursor-pointer px-3',
+                                        )}
+                                    >
+                                        Hampers
+                                    </Link>
+                                    {page.url === '/hampers' && (
                                         <div className="absolute bottom-4 left-1/2 h-0.5 w-3/4 -translate-x-1/2 bg-primary dark:bg-secondary"></div>
                                     )}
                                 </NavigationMenuItem>

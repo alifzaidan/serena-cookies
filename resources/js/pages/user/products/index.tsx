@@ -265,14 +265,14 @@ export default function Products({ products, variants, currentVariant, variantFi
 
                                             <div className="mt-4 flex-1 space-y-2">
                                                 <div className="flex flex-col justify-between sm:flex-row sm:items-center">
-                                                    <span className="text-xs font-medium text-muted-foreground">Harga Plastik</span>
+                                                    <span className="text-xs font-medium text-muted-foreground">Harga Regular</span>
                                                     <span className="font-black-mango text-lg font-bold text-primary">
                                                         {formatPrice(product.price_regular)}
                                                     </span>
                                                 </div>
                                                 {product.price_jar ? (
                                                     <div className="flex flex-col justify-between border-t border-border/50 pt-2 sm:flex-row sm:items-center">
-                                                        <span className="text-xs font-medium text-muted-foreground">Harga Toples</span>
+                                                        <span className="text-xs font-medium text-muted-foreground">Harga Jar</span>
                                                         <span className="font-black-mango text-lg font-bold text-primary">
                                                             {formatPrice(product.price_jar)}
                                                         </span>
@@ -319,24 +319,61 @@ export default function Products({ products, variants, currentVariant, variantFi
             <section className="relative overflow-hidden bg-primary py-16">
                 <div className="absolute -top-24 -right-12 h-56 w-56 rounded-full bg-secondary/40 blur-3xl" aria-hidden />
                 <div className="absolute -bottom-24 -left-12 h-56 w-56 rounded-full bg-amber-50/40 blur-3xl" aria-hidden />
-                <div className="container mx-auto max-w-4xl px-4 text-center">
-                    <Sparkles className="mx-auto h-12 w-12 text-secondary" />
-                    <h2 className="mt-4 font-black-mango text-3xl font-bold text-secondary md:text-4xl">Pesan Produk Favorit Anda Sekarang!</h2>
-                    <p className="mx-auto mt-4 max-w-2xl text-muted/80">
+
+                <div className="relative container mx-auto max-w-4xl px-4 text-center">
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.2, type: 'spring' }}
+                        className="mb-6 inline-flex items-center gap-2 rounded-full bg-secondary/20 px-4 py-2 text-sm font-medium text-secondary backdrop-blur-sm"
+                    >
+                        <Sparkles className="h-4 w-4" />
+                        Siap Memesan?
+                    </motion.div>
+
+                    <motion.h2
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.3 }}
+                        className="font-black-mango text-3xl font-bold text-secondary md:text-4xl"
+                    >
+                        Pesan Produk Favorit Anda Sekarang!
+                    </motion.h2>
+
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.4 }}
+                        className="mx-auto mt-4 max-w-2xl text-secondary/80"
+                    >
                         Hubungi kami melalui WhatsApp untuk pemesanan dan informasi lebih lanjut tentang produk Serena Cookies
-                    </p>
-                    <div className="mt-8">
+                    </motion.p>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.5 }}
+                        className="mt-8"
+                    >
                         <a
                             href="https://wa.me/6285649796210?text=Halo%2C%20saya%20ingin%20memesan%20produk%20Serena%20Cookies."
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            <Button size="lg" variant="secondary" className="gap-2">
+                            <Button
+                                size="lg"
+                                variant="secondary"
+                                className="gap-2 shadow-lg transition-all duration-200 hover:scale-105 hover:shadow-xl"
+                            >
                                 <ShoppingBag className="h-5 w-5" />
                                 Pesan Via WhatsApp
                             </Button>
                         </a>
-                    </div>
+                    </motion.div>
                 </div>
             </section>
         </UserLayout>

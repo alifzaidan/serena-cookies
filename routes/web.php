@@ -8,15 +8,17 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserAgentController;
 use App\Http\Controllers\UserCatalogController;
+use App\Http\Controllers\UserHamperController;
 use App\Http\Controllers\UserProductController;
 use App\Http\Controllers\VariantController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
-Route::get('/agents', [UserAgentController::class, 'index'])->name('agents');
 Route::get('/products', [UserProductController::class, 'index'])->name('products');
-Route::get('/catalog', [UserCatalogController::class, 'index'])->name('catalog');
+Route::get('/catalogs', [UserCatalogController::class, 'index'])->name('catalogs');
+Route::get('/hampers', [UserHamperController::class, 'index'])->name('hampers');
+Route::get('/agents', [UserAgentController::class, 'index'])->name('agents');
 
 Route::middleware(['auth', 'verified', 'role:admin'])->prefix('admin')->group(function () {
     Route::redirect('/', 'admin/dashboard');

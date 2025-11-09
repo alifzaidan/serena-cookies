@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { type OtherItem, type ProductItem, type ServiceItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { Facebook, Instagram, MapPin, Phone, ShoppingBag } from 'lucide-react';
+import { Facebook, Instagram, LogIn, MapPin, Phone, ShoppingBag } from 'lucide-react';
 
 const productItems: ProductItem[] = [
     {
@@ -20,8 +20,12 @@ const productItems: ProductItem[] = [
 
 const serviceItems: ServiceItem[] = [
     {
-        title: 'Harga & Katalog',
-        href: '/catalog',
+        title: 'Katalog',
+        href: '/catalogs',
+    },
+    {
+        title: 'Hampers',
+        href: '/hampers',
     },
     {
         title: 'Info Agen & Reseller',
@@ -150,17 +154,25 @@ export default function AppFooter() {
                 <div className="mt-12 border-t border-secondary-foreground pt-8">
                     <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
                         <p className="text-center text-sm text-muted-foreground sm:text-left">&copy; 2025 Serena Cookies. All rights reserved.</p>
-                        <Button asChild className="bg-primary">
-                            <a
-                                href="https://wa.me/6285649796210?text=Halo%2C%20saya%20ingin%20memesan%20produk%20Serena%20Cookies."
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="gap-2"
-                            >
-                                <ShoppingBag className="h-4 w-4" />
-                                Pesan Sekarang
-                            </a>
-                        </Button>
+                        <div className="flex items-center gap-2">
+                            <Button asChild variant="outline">
+                                <Link href="/login" className="gap-2">
+                                    Masuk Admin
+                                    <LogIn className="h-4 w-4" />
+                                </Link>
+                            </Button>
+                            <Button asChild className="bg-primary">
+                                <a
+                                    href="https://wa.me/6285649796210?text=Halo%2C%20saya%20ingin%20memesan%20produk%20Serena%20Cookies."
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="gap-2"
+                                >
+                                    <ShoppingBag className="h-4 w-4" />
+                                    Pesan Sekarang
+                                </a>
+                            </Button>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Hamper;
 use App\Models\Product;
 use App\Models\Variant;
 use Illuminate\Http\Request;
@@ -19,9 +20,14 @@ class HomeController extends Controller
             ->orderBy('name')
             ->get();
 
+        $hampers = Hamper::orderBy('created_at', 'desc')
+            ->take(5)
+            ->get();
+
         return Inertia::render('user/home/index', [
             'all_products' => $all_products,
             'variants' => $variants,
+            'hampers' => $hampers,
         ]);
     }
 

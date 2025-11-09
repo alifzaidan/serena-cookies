@@ -2,7 +2,7 @@ import { TextEffect } from '@/components/ui/text-effect';
 import UserLayout from '@/layouts/user-layout';
 import { Head } from '@inertiajs/react';
 import { motion } from 'framer-motion';
-import { Cookie, Gift, Sparkles, Target } from 'lucide-react';
+import { Award, Cookie, Heart, Sparkles, Target, Users } from 'lucide-react';
 
 export default function About() {
     return (
@@ -88,70 +88,284 @@ export default function About() {
                 </div>
             </section>
 
-            <section className="bg-amber-50 py-12 md:py-16">
+            {/* Story Section */}
+            <section className="bg-gradient-to-b from-amber-50 to-secondary py-12 md:py-16">
                 <div className="container mx-auto max-w-5xl px-4">
-                    <div className="text-center">
-                        <p className="text-sm font-medium tracking-wide text-primary uppercase">Cerita Kami</p>
-                        <h2 className="mt-2 font-black-mango text-3xl font-bold md:text-4xl">Serena Cookies</h2>
-                        <p className="mt-4 text-base text-muted-foreground md:text-lg">
-                            Serena Cookies menyediakan berbagai macam cookies yang diproduksi secara homemade. Kami menciptakan kue kering dari
-                            bahan-bahan dengan mutu terbaik, berkualitas, higienis dan tanpa pengawet. Sekali mencoba pasti langsung suka. Seiring
-                            dengan banyaknya permintaan, maka kami juga memproduksi pie susu serena. Dan nama kami berganti dengan serenakue.
-                        </p>
-                    </div>
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        className="text-center"
+                    >
+                        <motion.p
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: 0.2 }}
+                            className="text-sm font-medium tracking-wide text-primary uppercase"
+                        >
+                            Cerita Kami
+                        </motion.p>
+                        <motion.h2
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6, delay: 0.3 }}
+                            className="mt-2 font-black-mango text-3xl font-bold md:text-4xl"
+                        >
+                            <span className="bg-gradient-to-r from-primary to-amber-600 bg-clip-text text-transparent">Serena Cookies</span>
+                        </motion.h2>
+                        <motion.div
+                            initial={{ scaleX: 0 }}
+                            whileInView={{ scaleX: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8, delay: 0.4 }}
+                            className="mx-auto mt-4 h-1 w-24 origin-center rounded-full bg-gradient-to-r from-primary to-amber-600"
+                        />
+                        <motion.p
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6, delay: 0.5 }}
+                            className="mt-6 text-justify text-base text-muted-foreground md:text-center md:text-lg"
+                        >
+                            Serena Cookies menyediakan berbagai macam cookies yang diproduksi secara{' '}
+                            <span className="font-semibold text-primary">homemade</span>. Kami menciptakan kue kering dari bahan-bahan dengan{' '}
+                            <span className="font-semibold text-primary">mutu terbaik, berkualitas, higienis dan tanpa pengawet</span>. Sekali mencoba
+                            pasti langsung suka. Seiring dengan banyaknya permintaan, maka kami juga memproduksi pie susu serena. Dan nama kami
+                            berganti dengan <span className="font-semibold text-primary">serenakue</span>.
+                        </motion.p>
+                    </motion.div>
+
+                    {/* Stats */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.6 }}
+                        className="mt-12 grid gap-6 sm:grid-cols-3"
+                    >
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: 0.7, type: 'spring' }}
+                            className="group relative overflow-hidden rounded-2xl bg-white p-6 text-center shadow-md transition-all duration-300 hover:shadow-xl"
+                        >
+                            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                            <div className="relative">
+                                <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 transition-all duration-300 group-hover:scale-110 group-hover:bg-primary">
+                                    <Users className="h-6 w-6 text-primary transition-colors duration-300 group-hover:text-white" />
+                                </div>
+                                <h3 className="font-black-mango text-3xl font-bold text-primary">3.000+</h3>
+                                <p className="mt-1 text-sm font-medium text-muted-foreground">Pelanggan Setia</p>
+                            </div>
+                        </motion.div>
+
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: 0.8, type: 'spring' }}
+                            className="group relative overflow-hidden rounded-2xl bg-white p-6 text-center shadow-md transition-all duration-300 hover:shadow-xl"
+                        >
+                            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                            <div className="relative">
+                                <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 transition-all duration-300 group-hover:scale-110 group-hover:bg-primary">
+                                    <Cookie className="h-6 w-6 text-primary transition-colors duration-300 group-hover:text-white" />
+                                </div>
+                                <h3 className="font-black-mango text-3xl font-bold text-primary">20+</h3>
+                                <p className="mt-1 text-sm font-medium text-muted-foreground">Varian Produk</p>
+                            </div>
+                        </motion.div>
+
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: 0.9, type: 'spring' }}
+                            className="group relative overflow-hidden rounded-2xl bg-white p-6 text-center shadow-md transition-all duration-300 hover:shadow-xl"
+                        >
+                            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                            <div className="relative">
+                                <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 transition-all duration-300 group-hover:scale-110 group-hover:bg-primary">
+                                    <Award className="h-6 w-6 text-primary transition-colors duration-300 group-hover:text-white" />
+                                </div>
+                                <h3 className="font-black-mango text-3xl font-bold text-primary">100%</h3>
+                                <p className="mt-1 text-sm font-medium text-muted-foreground">Bahan Premium</p>
+                            </div>
+                        </motion.div>
+                    </motion.div>
                 </div>
             </section>
 
             {/* Mission & Values */}
-            <section className="bg-amber-50 pt-10 pb-12 md:pb-16">
+            <section className="bg-gradient-to-b from-secondary to-amber-50 pt-10 pb-12 md:pb-16">
                 <div className="container mx-auto max-w-6xl px-4">
-                    <div className="mb-8 text-center">
-                        <p className="text-sm font-medium tracking-wide text-primary uppercase">Tentang Kami</p>
-                        <h2 className="mt-2 font-black-mango text-3xl font-bold md:text-4xl">Visi, Misi & Nilai</h2>
-                    </div>
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        className="mb-8 text-center"
+                    >
+                        <motion.p
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: 0.2 }}
+                            className="text-sm font-medium tracking-wide text-primary uppercase"
+                        >
+                            Tentang Kami
+                        </motion.p>
+                        <motion.h2
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6, delay: 0.3 }}
+                            className="mt-2 font-black-mango text-3xl font-bold md:text-4xl"
+                        >
+                            Visi, Misi & <span className="bg-gradient-to-r from-primary to-amber-600 bg-clip-text text-transparent">Nilai</span>
+                        </motion.h2>
+                        <motion.div
+                            initial={{ scaleX: 0 }}
+                            whileInView={{ scaleX: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8, delay: 0.4 }}
+                            className="mx-auto mt-4 h-1 w-24 origin-center rounded-full bg-gradient-to-r from-primary to-amber-600"
+                        />
+                    </motion.div>
 
                     <div className="grid gap-8 md:grid-cols-3">
-                        <div className="relative overflow-hidden rounded-3xl bg-secondary shadow-sm">
-                            <div className="absolute -top-24 -left-12 h-56 w-56 rounded-full bg-primary/30 blur-3xl" aria-hidden />
-                            <div className="absolute -right-12 -bottom-24 h-56 w-56 rounded-full bg-secondary-foreground/30 blur-3xl" aria-hidden />
+                        <motion.div
+                            initial={{ opacity: 0, y: 40, scale: 0.9 }}
+                            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: 0.3, ease: 'easeOut' }}
+                            className="group relative overflow-hidden rounded-3xl bg-white shadow-lg transition-all duration-300 hover:shadow-2xl"
+                        >
+                            <div
+                                className="absolute -top-24 -left-12 h-56 w-56 rounded-full bg-primary/20 blur-3xl transition-all duration-300 group-hover:bg-primary/30"
+                                aria-hidden
+                            />
+                            <div
+                                className="absolute -right-12 -bottom-24 h-56 w-56 rounded-full bg-amber-500/20 blur-3xl transition-all duration-300 group-hover:bg-amber-500/30"
+                                aria-hidden
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
                             <div className="relative z-10 p-6 text-center">
-                                <div className="mx-auto mb-6 inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary">
-                                    <Sparkles className="h-6 w-6 text-secondary" />
-                                </div>
-                                <h3 className="font-black-mango text-xl font-semibold text-primary md:text-2xl">Visi</h3>
-                                <p className="mt-2 text-sm text-muted-foreground">
+                                <motion.div
+                                    initial={{ scale: 0, rotate: -45 }}
+                                    whileInView={{ scale: 1, rotate: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.5, type: 'spring', stiffness: 200 }}
+                                    className="mx-auto mb-6 inline-flex h-16 w-16 items-center justify-center rounded-full bg-primary shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:shadow-xl"
+                                >
+                                    <Sparkles className="h-8 w-8 text-secondary" />
+                                </motion.div>
+                                <h3 className="font-black-mango text-xl font-semibold text-primary transition-colors duration-300 group-hover:text-primary md:text-2xl">
+                                    Visi
+                                </h3>
+                                <motion.div
+                                    initial={{ scaleX: 0 }}
+                                    whileInView={{ scaleX: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.6, delay: 0.6 }}
+                                    className="mx-auto my-4 h-px w-16 origin-center bg-primary/30 transition-all duration-300 group-hover:w-full group-hover:bg-primary"
+                                />
+                                <p className="mt-2 text-sm text-muted-foreground transition-colors duration-300 group-hover:text-gray-700">
                                     Menjadi pilihan utama kue kering berkualitas yang menghadirkan kebahagiaan pada setiap momen keluarga.
                                 </p>
                             </div>
-                        </div>
+                        </motion.div>
 
-                        <div className="relative overflow-hidden rounded-3xl bg-secondary shadow-sm">
-                            <div className="absolute -top-24 -left-12 h-56 w-56 rounded-full bg-primary/30 blur-3xl" aria-hidden />
-                            <div className="absolute -right-12 -bottom-24 h-56 w-56 rounded-full bg-secondary-foreground/30 blur-3xl" aria-hidden />
+                        <motion.div
+                            initial={{ opacity: 0, y: 40, scale: 0.9 }}
+                            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: 0.4, ease: 'easeOut' }}
+                            className="group relative overflow-hidden rounded-3xl bg-white shadow-lg transition-all duration-300 hover:shadow-2xl"
+                        >
+                            <div
+                                className="absolute -top-24 -left-12 h-56 w-56 rounded-full bg-primary/20 blur-3xl transition-all duration-300 group-hover:bg-primary/30"
+                                aria-hidden
+                            />
+                            <div
+                                className="absolute -right-12 -bottom-24 h-56 w-56 rounded-full bg-amber-500/20 blur-3xl transition-all duration-300 group-hover:bg-amber-500/30"
+                                aria-hidden
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
                             <div className="relative z-10 p-6 text-center">
-                                <div className="mx-auto mb-6 inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary">
-                                    <Target className="h-6 w-6 text-secondary" />
-                                </div>
-                                <h3 className="font-black-mango text-xl font-semibold text-primary md:text-2xl">Misi</h3>
-                                <p className="mt-2 text-sm text-muted-foreground">
+                                <motion.div
+                                    initial={{ scale: 0, rotate: -45 }}
+                                    whileInView={{ scale: 1, rotate: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.5, type: 'spring', stiffness: 200 }}
+                                    className="mx-auto mb-6 inline-flex h-16 w-16 items-center justify-center rounded-full bg-primary shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:shadow-xl"
+                                >
+                                    <Target className="h-8 w-8 text-secondary" />
+                                </motion.div>
+                                <h3 className="font-black-mango text-xl font-semibold text-primary transition-colors duration-300 group-hover:text-primary md:text-2xl">
+                                    Misi
+                                </h3>
+                                <motion.div
+                                    initial={{ scaleX: 0 }}
+                                    whileInView={{ scaleX: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.6, delay: 0.7 }}
+                                    className="mx-auto my-4 h-px w-16 origin-center bg-primary/30 transition-all duration-300 group-hover:w-full group-hover:bg-primary"
+                                />
+                                <p className="mt-2 text-sm text-muted-foreground transition-colors duration-300 group-hover:text-gray-700">
                                     Mengolah bahan terbaik dengan resep istimewa, menjaga kualitas dan konsistensi agar pelanggan selalu puas.
                                 </p>
                             </div>
-                        </div>
+                        </motion.div>
 
-                        <div className="relative overflow-hidden rounded-3xl bg-secondary shadow-sm">
-                            <div className="absolute -top-24 -left-12 h-56 w-56 rounded-full bg-primary/30 blur-3xl" aria-hidden />
-                            <div className="absolute -right-12 -bottom-24 h-56 w-56 rounded-full bg-secondary-foreground/30 blur-3xl" aria-hidden />
+                        <motion.div
+                            initial={{ opacity: 0, y: 40, scale: 0.9 }}
+                            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, ease: 'easeOut' }}
+                            className="group relative overflow-hidden rounded-3xl bg-white shadow-lg transition-all duration-300 hover:shadow-2xl"
+                        >
+                            <div
+                                className="absolute -top-24 -left-12 h-56 w-56 rounded-full bg-primary/20 blur-3xl transition-all duration-300 group-hover:bg-primary/30"
+                                aria-hidden
+                            />
+                            <div
+                                className="absolute -right-12 -bottom-24 h-56 w-56 rounded-full bg-amber-500/20 blur-3xl transition-all duration-300 group-hover:bg-amber-500/30"
+                                aria-hidden
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
                             <div className="relative z-10 p-6 text-center">
-                                <div className="mx-auto mb-6 inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary">
-                                    <Gift className="h-6 w-6 text-secondary" />
-                                </div>
-                                <h3 className="font-black-mango text-xl font-semibold text-primary md:text-2xl">Nilai Kami</h3>
-                                <p className="mt-2 text-sm text-muted-foreground">
+                                <motion.div
+                                    initial={{ scale: 0, rotate: -45 }}
+                                    whileInView={{ scale: 1, rotate: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.5, type: 'spring', stiffness: 200 }}
+                                    className="mx-auto mb-6 inline-flex h-16 w-16 items-center justify-center rounded-full bg-primary shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:shadow-xl"
+                                >
+                                    <Heart className="h-8 w-8 text-secondary" />
+                                </motion.div>
+                                <h3 className="font-black-mango text-xl font-semibold text-primary transition-colors duration-300 group-hover:text-primary md:text-2xl">
+                                    Nilai Kami
+                                </h3>
+                                <motion.div
+                                    initial={{ scaleX: 0 }}
+                                    whileInView={{ scaleX: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.6, delay: 0.8 }}
+                                    className="mx-auto my-4 h-px w-16 origin-center bg-primary/30 transition-all duration-300 group-hover:w-full group-hover:bg-primary"
+                                />
+                                <p className="mt-2 text-sm text-muted-foreground transition-colors duration-300 group-hover:text-gray-700">
                                     Kejujuran, kehangatan, dan kreativitas — setiap produk dibuat dengan ketulusan untuk pelanggan tercinta.
                                 </p>
                             </div>
-                        </div>
+                        </motion.div>
                     </div>
                 </div>
             </section>

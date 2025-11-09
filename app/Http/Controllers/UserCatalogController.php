@@ -12,17 +12,10 @@ class UserCatalogController extends Controller
 {
     public function index()
     {
-        $variants = Variant::withCount('products')
-            ->orderBy('name')
-            ->get();
-
         $catalogs = Catalog::orderBy('created_at', 'desc')->get();
-        $hampers = Hamper::orderBy('created_at', 'desc')->get();
 
-        return Inertia::render('user/catalog/index', [
-            'variants' => $variants,
+        return Inertia::render('user/catalogs/index', [
             'catalogs' => $catalogs,
-            'hampers' => $hampers,
         ]);
     }
 }
