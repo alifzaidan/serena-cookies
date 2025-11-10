@@ -78,7 +78,6 @@ class ProductSeeder extends Seeder
         Hamper::create(['name' => 'Hamper Jar Isi 4', 'description' => '4 jar reguler, Hardbox Premium, Free Greeting Card', 'category' => 'eid', 'price' => 500000]);
 
         Hamper::create(['name' => 'Hamper Keranjang Isi 4 Toples', 'description' => '4 toples reguler, Keranjang Premium, Free Greeting Card', 'category' => 'eid', 'price' => 550000]);
-        Hamper::create(['name' => 'Hamper Keranjang Isi 6 Toples', 'description' => '6 toples reguler, Keranjang Premium, Free Greeting Card', 'category' => 'eid', 'price' => 800000]);
         Hamper::create(['name' => 'Hamper Keranjang Isi 6 Jar', 'description' => '6 jar reguler, Keranjang Premium, Free Greeting Card', 'category' => 'eid', 'price' => 800000]);
 
         // Hamper Tahun Baru

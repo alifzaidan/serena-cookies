@@ -26,14 +26,6 @@ class DatabaseSeeder extends Seeder
             'email_verified_at' => now(),
         ])->assignRole('admin');
 
-        User::factory()->create([
-            'name' => 'Ratih',
-            'email' => 'ratih@gmail.com',
-            'phone' => '082234442534',
-            'password' => bcrypt('admin'),
-            'email_verified_at' => now(),
-        ])->assignRole('admin');
-
         $this->call(ProductSeeder::class);
         $this->call(AgentSeeder::class);
     }

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->enum('category', ['eid', 'new_year']);
             $table->bigInteger('price')->default(0);
             $table->string('image')->nullable();
+            $table->boolean('is_favorite')->default(false);
             $table->timestamps();
         });
     }

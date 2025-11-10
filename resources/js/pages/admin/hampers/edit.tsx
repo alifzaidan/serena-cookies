@@ -2,6 +2,8 @@ import InputError from '@/components/input-error';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
 import AppLayout from '@/layouts/app-layout';
 import { parseRupiah, rupiahFormatter } from '@/lib/utils';
@@ -26,8 +28,10 @@ interface Hamper {
     id: string;
     name: string;
     description?: string;
+    category: 'eid' | 'new_year';
     price: number;
     image?: string;
+    is_favorite: boolean;
 }
 
 interface EditHamperProps {
@@ -44,7 +48,9 @@ export default function EditHamper({ hamper }: EditHamperProps) {
     const { data, setData, post, processing, errors } = useForm({
         name: hamper.name,
         description: hamper.description || '',
+        category: hamper.category,
         price: hamper.price,
+        is_favorite: hamper.is_favorite,
         image: null as File | null,
         _method: 'PUT',
     });
@@ -115,6 +121,20 @@ export default function EditHamper({ hamper }: EditHamperProps) {
                     </div>
 
                     <div className="space-y-2">
+                        <Label htmlFor="category">Kategori *</Label>
+                        <Select value={data.category} onValueChange={(value) => setData('category', value as 'eid' | 'new_year')}>
+                            <SelectTrigger>
+                                <SelectValue placeholder="Pilih Kategori" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="eid">Idul Fitri</SelectItem>
+                                <SelectItem value="new_year">Tahun Baru</SelectItem>
+                            </SelectContent>
+                        </Select>
+                        <InputError message={errors.category} />
+                    </div>
+
+                    <div className="space-y-2">
                         <Label htmlFor="price">Harga *</Label>
                         <Input
                             id="price"
@@ -125,6 +145,28 @@ export default function EditHamper({ hamper }: EditHamperProps) {
                             autoComplete="off"
                         />
                         <InputError message={errors.price} />
+                    </div>
+
+                    <div className="space-y-2">
+                        <Label>Tandai sebagai Favorit *</Label>
+                        <RadioGroup
+                            value={data.is_favorite ? 'true' : 'false'}
+                            onValueChange={(value: string) => setData('is_favorite', value === 'true')}
+                        >
+                            <div className="flex items-center gap-3">
+                                <RadioGroupItem value="true" id="favorite-yes" />
+                                <Label htmlFor="favorite-yes" className="cursor-pointer font-normal">
+                                    Ya, tandai sebagai favorit
+                                </Label>
+                            </div>
+                            <div className="flex items-center gap-3">
+                                <RadioGroupItem value="false" id="favorite-no" />
+                                <Label htmlFor="favorite-no" className="cursor-pointer font-normal">
+                                    Tidak
+                                </Label>
+                            </div>
+                        </RadioGroup>
+                        <InputError message={errors.is_favorite} />
                     </div>
 
                     <div className="space-y-2">

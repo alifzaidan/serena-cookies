@@ -2,12 +2,13 @@
 
 import { DataTableColumnHeader } from '@/components/data-table-column-header';
 import DeleteConfirmDialog from '@/components/delete-dialog';
+import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { rupiahFormatter } from '@/lib/utils';
 import { Link, router } from '@inertiajs/react';
 import { ColumnDef } from '@tanstack/react-table';
-import { Edit, Trash } from 'lucide-react';
+import { Edit, Star, Trash } from 'lucide-react';
 
 export default function HamperActions({ hamper }: { hamper: Hamper }) {
     const handleDelete = () => {
@@ -56,8 +57,10 @@ export type Hamper = {
     id: string;
     name: string;
     description?: string;
+    category: 'eid' | 'new_year';
     price: number;
     image?: string;
+    is_favorite: boolean;
 };
 
 export const columns: ColumnDef<Hamper>[] = [
@@ -88,7 +91,31 @@ export const columns: ColumnDef<Hamper>[] = [
         accessorKey: 'name',
         header: ({ column }) => <DataTableColumnHeader column={column} title="Nama Hampers" />,
         cell: ({ row }) => {
-            return <div className="font-medium">{row.original.name}</div>;
+            return (
+                <div className="flex flex-col gap-2">
+                    {row.original.is_favorite ? (
+                        <Tooltip>
+                            <TooltipTrigger asChild>
+                                <Badge variant="secondary" className="gap-1 bg-amber-100 text-amber-700 hover:bg-amber-100">
+                                    <Star className="h-3 w-3 fill-amber-700" />
+                                    Favorit
+                                </Badge>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                                <p>Hampers Favorit</p>
+                            </TooltipContent>
+                        </Tooltip>
+                    ) : null}
+                    <span className="font-medium">{row.original.name}</span>
+                </div>
+            );
+        },
+    },
+    {
+        accessorKey: 'category',
+        header: ({ column }) => <DataTableColumnHeader column={column} title="Kategori" />,
+        cell: ({ row }) => {
+            return <Badge className="font-medium">{row.original.category === 'eid' ? 'Idul Fitri' : 'Tahun Baru'}</Badge>;
         },
     },
     {

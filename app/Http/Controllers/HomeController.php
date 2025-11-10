@@ -20,8 +20,8 @@ class HomeController extends Controller
             ->orderBy('name')
             ->get();
 
-        $hampers = Hamper::orderBy('created_at', 'desc')
-            ->take(5)
+        $hampers = Hamper::where('is_favorite', true)
+            ->orderBy('created_at', 'desc')
             ->get();
 
         return Inertia::render('user/home/index', [

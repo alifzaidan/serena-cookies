@@ -147,157 +147,172 @@ export default function Home({ variants, hampers }: HomeProps) {
                 </div>
             </section>
 
-            <section className="overflow-hidden bg-gradient-to-b from-amber-50 to-secondary py-12">
-                <div className="container mx-auto mb-4 max-w-7xl px-4 text-center">
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5, delay: 0.2, type: 'spring', stiffness: 200 }}
-                        className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-xs font-semibold text-primary md:text-sm"
-                    >
-                        <Sparkles className="h-4 w-4 animate-pulse" />
-                        Produk Terlaris & Terfavorit
-                        <Sparkles className="h-4 w-4 animate-pulse" />
-                    </motion.div>
-
-                    <div className="relative">
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: 0.3 }}
-                            className="relative inline-block"
-                        >
-                            <h2 className="font-black-mango text-3xl font-bold md:text-2xl lg:text-4xl">
-                                <span className="bg-gradient-to-r from-primary via-amber-600 to-primary bg-clip-text text-transparent">
-                                    Hampers Premium
-                                </span>
-                                <br />
-                                <motion.span
-                                    initial={{ opacity: 0, x: -20 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ duration: 0.6, delay: 0.5 }}
-                                    className="relative"
-                                >
-                                    Untuk Momen Istimewa
-                                </motion.span>
-                            </h2>
-                        </motion.div>
-                    </div>
-                </div>
-
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: 0.5 }}
-                    className="relative"
-                >
-                    <InfiniteSlider gap={24} className="py-8" speed={30}>
-                        {hampers.map((hamper, index) => (
+            <section className="relative overflow-hidden bg-gradient-to-b from-amber-50 to-secondary py-12">
+                <div
+                    className="absolute inset-x-0 top-0 h-36 bg-cover bg-center opacity-50"
+                    style={{
+                        backgroundImage: "url('/assets/images/pattern.jpg')",
+                        maskImage: 'linear-gradient(to top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 100%)',
+                        WebkitMaskImage: 'linear-gradient(to top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 100%)',
+                    }}
+                    aria-hidden
+                />
+                {hampers.length > 0 && (
+                    <>
+                        <div className="container mx-auto mb-4 max-w-7xl px-4 text-center">
                             <motion.div
-                                key={hamper.id}
-                                initial={{ opacity: 0, y: 50, scale: 0.9 }}
-                                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true }}
-                                transition={{
-                                    duration: 0.5,
-                                    delay: 0.2 + index * 0.1,
-                                    ease: 'easeOut',
-                                }}
-                                className="group relative w-[320px] flex-shrink-0 overflow-hidden rounded-2xl bg-white shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
+                                transition={{ duration: 0.5, delay: 0.2, type: 'spring', stiffness: 200 }}
+                                className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-xs font-semibold text-primary md:text-sm"
                             >
-                                <div className="relative aspect-[4/3] overflow-hidden">
-                                    {hamper.image ? (
-                                        <>
-                                            <motion.img
-                                                initial={{ scale: 1.2, opacity: 0 }}
-                                                whileInView={{ scale: 1, opacity: 1 }}
-                                                viewport={{ once: true }}
-                                                transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
-                                                src={`/storage/${hamper.image}`}
-                                                alt={hamper.name}
-                                                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                                            />
-                                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                                        </>
-                                    ) : (
-                                        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-primary/10 to-primary/5">
-                                            <Gift className="h-20 w-20 text-primary/30" />
-                                        </div>
-                                    )}
-                                </div>
-
-                                <div className="relative p-6">
-                                    <motion.div
-                                        initial={{ opacity: 0, y: 20 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-                                        className="mb-4"
-                                    >
-                                        <h3 className="line-clamp-2 font-black-mango text-xl font-bold text-gray-900 transition-colors duration-200 group-hover:text-primary">
-                                            {hamper.name}
-                                        </h3>
-                                        {hamper.description && <p className="mt-2 line-clamp-2 text-sm text-gray-600">{hamper.description}</p>}
-                                    </motion.div>
-
-                                    <motion.div
-                                        initial={{ scaleX: 0 }}
-                                        whileInView={{ scaleX: 1 }}
-                                        viewport={{ once: true }}
-                                        transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-                                        className="mb-4 h-px origin-left bg-gray-200"
-                                    />
-
-                                    <motion.div
-                                        initial={{ opacity: 0, y: 10 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
-                                    >
-                                        <a
-                                            href={`https://wa.me/6285649796210?text=Halo%2C%20saya%20ingin%20memesan%20hampers%20${encodeURIComponent(hamper.name)}.`}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                        >
-                                            <Button className="w-full gap-2 bg-primary transition-all duration-200 group-hover:shadow-lg hover:bg-primary/90">
-                                                <ShoppingBag className="h-4 w-4" />
-                                                Pesan Sekarang
-                                            </Button>
-                                        </a>
-                                    </motion.div>
-                                </div>
-
-                                <div className="absolute -top-8 -right-8 h-32 w-32 rounded-full bg-primary/5 blur-2xl transition-all duration-300 group-hover:bg-primary/10" />
-                                <div className="absolute -bottom-8 -left-8 h-32 w-32 rounded-full bg-secondary/30 blur-2xl transition-all duration-300 group-hover:bg-secondary/50" />
+                                <Sparkles className="h-4 w-4 animate-pulse" />
+                                Produk Terlaris & Terfavorit
+                                <Sparkles className="h-4 w-4 animate-pulse" />
                             </motion.div>
-                        ))}
-                    </InfiniteSlider>
-                </motion.div>
 
-                <div className="container mx-auto max-w-7xl px-4">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: 0.3 }}
-                        className="mt-8 flex justify-center"
-                    >
-                        <Link href="/hampers">
-                            <Button size="lg" variant="default" className="gap-2 shadow-lg transition-all duration-200 hover:shadow-xl">
-                                Lihat Semua Hampers
-                                <ArrowRight className="h-4 w-4" />
-                            </Button>
-                        </Link>
-                    </motion.div>
-                </div>
+                            <div className="relative">
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.6, delay: 0.3 }}
+                                    className="relative inline-block"
+                                >
+                                    <h2 className="font-black-mango text-3xl font-bold md:text-2xl lg:text-4xl">
+                                        <span className="bg-gradient-to-r from-primary via-amber-600 to-primary bg-clip-text text-transparent">
+                                            Hampers Premium
+                                        </span>
+                                        <br />
+                                        <motion.span
+                                            initial={{ opacity: 0, x: -20 }}
+                                            whileInView={{ opacity: 1, x: 0 }}
+                                            viewport={{ once: true }}
+                                            transition={{ duration: 0.6, delay: 0.5 }}
+                                            className="relative"
+                                        >
+                                            Untuk Momen Istimewa
+                                        </motion.span>
+                                    </h2>
+                                </motion.div>
+                            </div>
+                        </div>
+
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8, delay: 0.5 }}
+                            className="relative"
+                        >
+                            <InfiniteSlider gap={24} className="py-8" speed={30}>
+                                {hampers.map((hamper, index) => (
+                                    <motion.div
+                                        key={hamper.id}
+                                        initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                                        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                                        viewport={{ once: true }}
+                                        transition={{
+                                            duration: 0.5,
+                                            delay: 0.2 + index * 0.1,
+                                            ease: 'easeOut',
+                                        }}
+                                        className="group relative w-[230px] flex-shrink-0 overflow-hidden rounded-2xl bg-white shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-xl md:w-[320px]"
+                                    >
+                                        <div className="relative aspect-[4/3] overflow-hidden">
+                                            {hamper.image ? (
+                                                <>
+                                                    <motion.img
+                                                        initial={{ scale: 1.2, opacity: 0 }}
+                                                        whileInView={{ scale: 1, opacity: 1 }}
+                                                        viewport={{ once: true }}
+                                                        transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
+                                                        src={`/storage/${hamper.image}`}
+                                                        alt={hamper.name}
+                                                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                                    />
+                                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                                                </>
+                                            ) : (
+                                                <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-primary/10 to-primary/5">
+                                                    <Gift className="h-20 w-20 text-primary/30" />
+                                                </div>
+                                            )}
+                                        </div>
+
+                                        <div className="relative p-6">
+                                            <motion.div
+                                                initial={{ opacity: 0, y: 20 }}
+                                                whileInView={{ opacity: 1, y: 0 }}
+                                                viewport={{ once: true }}
+                                                transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
+                                                className="mb-4"
+                                            >
+                                                <h3 className="line-clamp-2 font-black-mango text-xl font-bold text-gray-900 transition-colors duration-200 group-hover:text-primary">
+                                                    {hamper.name}
+                                                </h3>
+                                                {hamper.description && (
+                                                    <p className="mt-2 line-clamp-2 text-sm text-gray-600">{hamper.description}</p>
+                                                )}
+                                            </motion.div>
+
+                                            <motion.div
+                                                initial={{ scaleX: 0 }}
+                                                whileInView={{ scaleX: 1 }}
+                                                viewport={{ once: true }}
+                                                transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
+                                                className="mb-4 h-px origin-left bg-gray-200"
+                                            />
+
+                                            <motion.div
+                                                initial={{ opacity: 0, y: 10 }}
+                                                whileInView={{ opacity: 1, y: 0 }}
+                                                viewport={{ once: true }}
+                                                transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
+                                            >
+                                                <a
+                                                    href={`https://wa.me/6285649796210?text=Halo%2C%20saya%20ingin%20memesan%20hampers%20${encodeURIComponent(hamper.name)}.`}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                >
+                                                    <Button className="w-full gap-2 bg-primary transition-all duration-200 group-hover:shadow-lg hover:bg-primary/90">
+                                                        <ShoppingBag className="h-4 w-4" />
+                                                        Pesan Sekarang
+                                                    </Button>
+                                                </a>
+                                            </motion.div>
+                                        </div>
+
+                                        <div className="absolute -top-8 -right-8 h-32 w-32 rounded-full bg-primary/5 blur-2xl transition-all duration-300 group-hover:bg-primary/10" />
+                                        <div className="absolute -bottom-8 -left-8 h-32 w-32 rounded-full bg-secondary/30 blur-2xl transition-all duration-300 group-hover:bg-secondary/50" />
+                                    </motion.div>
+                                ))}
+                            </InfiniteSlider>
+                        </motion.div>
+
+                        <div className="container mx-auto max-w-7xl px-4">
+                            <motion.div
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.6, delay: 0.3 }}
+                                className="mt-8 flex justify-center"
+                            >
+                                <Link href="/hampers">
+                                    <Button size="lg" variant="default" className="gap-2 shadow-lg transition-all duration-200 hover:shadow-xl">
+                                        Lihat Semua Hampers
+                                        <ArrowRight className="h-4 w-4" />
+                                    </Button>
+                                </Link>
+                            </motion.div>
+                        </div>
+                    </>
+                )}
             </section>
 
             {/* Features Section */}
-            <section className="bg-gradient-to-b from-secondary to-muted/30 py-12">
+            <section className={`bg-gradient-to-b from-secondary to-muted/30 ${hampers.length > 0 ? 'py-12' : ''}`}>
                 <div className="container mx-auto max-w-6xl px-4">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}

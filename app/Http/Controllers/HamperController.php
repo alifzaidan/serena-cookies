@@ -28,8 +28,10 @@ class HamperController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'category' => 'required|in:eid,new_year',
             'price' => 'required|numeric|min:0',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'is_favorite' => 'nullable|boolean',
         ]);
 
         if ($request->hasFile('image')) {
@@ -53,8 +55,10 @@ class HamperController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'category' => 'required|in:eid,new_year',
             'price' => 'required|numeric|min:0',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'is_favorite' => 'nullable|boolean',
         ]);
 
         if ($request->hasFile('image')) {

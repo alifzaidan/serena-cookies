@@ -33,6 +33,7 @@ interface Product {
     variant_id: number;
     name: string;
     description?: string;
+    net_weight: number;
     price_regular: number;
     price_jar: number | null;
     image?: string;
@@ -54,6 +55,7 @@ export default function EditProduct({ product, variants }: EditProductProps) {
         variant_id: product.variant_id.toString(),
         name: product.name,
         description: product.description || '',
+        net_weight: product.net_weight,
         price_regular: product.price_regular,
         price_jar: product.price_jar || 0,
         image: null as File | null,
@@ -140,6 +142,24 @@ export default function EditProduct({ product, variants }: EditProductProps) {
                             rows={4}
                         />
                         <InputError message={errors.description} />
+                    </div>
+
+                    <div className="space-y-2">
+                        <Label htmlFor="net_weight">Berat Netto (gram) *</Label>
+                        <div className="relative">
+                            <Input
+                                id="net_weight"
+                                type="number"
+                                min="0"
+                                step="1"
+                                value={data.net_weight || ''}
+                                onChange={(e) => setData('net_weight', parseInt(e.target.value) || 0)}
+                                placeholder="0"
+                                className="pr-16"
+                            />
+                            <span className="absolute top-1/2 right-3 -translate-y-1/2 text-sm text-muted-foreground">gram</span>
+                        </div>
+                        <InputError message={errors.net_weight} />
                     </div>
 
                     <div className="grid grid-cols-2 gap-4">

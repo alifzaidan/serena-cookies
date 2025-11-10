@@ -102,7 +102,16 @@ export default function Catalog({ catalogs }: CatalogProps) {
 
             {/* Catalogs Section */}
             {catalogs.length > 0 && (
-                <section className="bg-gradient-to-b from-secondary to-amber-50 py-12 md:py-16">
+                <section className="relative bg-gradient-to-b from-secondary to-amber-50 py-12 md:py-16">
+                    <div
+                        className="absolute inset-x-0 top-0 h-36 bg-cover bg-center opacity-50"
+                        style={{
+                            backgroundImage: "url('/assets/images/pattern.jpg')",
+                            maskImage: 'linear-gradient(to top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 100%)',
+                            WebkitMaskImage: 'linear-gradient(to top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 100%)',
+                        }}
+                        aria-hidden
+                    />
                     <div className="container mx-auto max-w-7xl px-4">
                         <motion.div
                             initial={{ opacity: 0, y: 30 }}

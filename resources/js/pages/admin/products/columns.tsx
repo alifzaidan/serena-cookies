@@ -57,6 +57,7 @@ export type Product = {
     variant_id: number;
     name: string;
     description?: string;
+    net_weight: number;
     price_regular: number;
     price_jar: number | null;
     image?: string;
@@ -98,10 +99,10 @@ export const columns: ColumnDef<Product>[] = [
         },
     },
     {
-        accessorKey: 'description',
-        header: ({ column }) => <DataTableColumnHeader column={column} title="Deskripsi Product" />,
+        accessorKey: 'net_weight',
+        header: ({ column }) => <DataTableColumnHeader column={column} title="Berat Netto (gram)" />,
         cell: ({ row }) => {
-            return <div className="font-medium">{row.original.description}</div>;
+            return <div className="font-medium">{row.original.net_weight}</div>;
         },
     },
     {
