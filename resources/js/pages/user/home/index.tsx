@@ -211,28 +211,16 @@ export default function Home({ variants, hampers }: HomeProps) {
                             transition={{ duration: 0.8, delay: 0.5 }}
                             className="relative"
                         >
-                            <InfiniteSlider gap={24} className="py-8" speed={30}>
+                            <InfiniteSlider gap={16} className="py-8" speed={30}>
                                 {hampers.map((hamper, index) => (
-                                    <motion.div
-                                        key={hamper.id}
-                                        initial={{ opacity: 0, y: 50, scale: 0.9 }}
-                                        whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                                        viewport={{ once: true }}
-                                        transition={{
-                                            duration: 0.5,
-                                            delay: 0.2 + index * 0.1,
-                                            ease: 'easeOut',
-                                        }}
+                                    <div
+                                        key={index}
                                         className="group relative w-[230px] flex-shrink-0 overflow-hidden rounded-2xl bg-white shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-xl md:w-[320px]"
                                     >
                                         <div className="relative aspect-[4/3] overflow-hidden">
                                             {hamper.image ? (
                                                 <>
-                                                    <motion.img
-                                                        initial={{ scale: 1.2, opacity: 0 }}
-                                                        whileInView={{ scale: 1, opacity: 1 }}
-                                                        viewport={{ once: true }}
-                                                        transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
+                                                    <img
                                                         src={`/storage/${hamper.image}`}
                                                         alt={hamper.name}
                                                         className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
@@ -247,51 +235,32 @@ export default function Home({ variants, hampers }: HomeProps) {
                                         </div>
 
                                         <div className="relative p-6">
-                                            <motion.div
-                                                initial={{ opacity: 0, y: 20 }}
-                                                whileInView={{ opacity: 1, y: 0 }}
-                                                viewport={{ once: true }}
-                                                transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-                                                className="mb-4"
-                                            >
+                                            <div className="mb-4">
                                                 <h3 className="line-clamp-2 font-black-mango text-xl font-bold text-gray-900 transition-colors duration-200 group-hover:text-primary">
                                                     {hamper.name}
                                                 </h3>
                                                 {hamper.description && (
                                                     <p className="mt-2 line-clamp-2 text-sm text-gray-600">{hamper.description}</p>
                                                 )}
-                                            </motion.div>
+                                            </div>
 
-                                            <motion.div
-                                                initial={{ scaleX: 0 }}
-                                                whileInView={{ scaleX: 1 }}
-                                                viewport={{ once: true }}
-                                                transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-                                                className="mb-4 h-px origin-left bg-gray-200"
-                                            />
+                                            <div className="mb-4 h-px origin-left bg-gray-200" />
 
-                                            <motion.div
-                                                initial={{ opacity: 0, y: 10 }}
-                                                whileInView={{ opacity: 1, y: 0 }}
-                                                viewport={{ once: true }}
-                                                transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
+                                            <a
+                                                href={`https://wa.me/6285649796210?text=Halo%2C%20saya%20ingin%20memesan%20hampers%20${encodeURIComponent(hamper.name)}.`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
                                             >
-                                                <a
-                                                    href={`https://wa.me/6285649796210?text=Halo%2C%20saya%20ingin%20memesan%20hampers%20${encodeURIComponent(hamper.name)}.`}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                >
-                                                    <Button className="w-full gap-2 bg-primary transition-all duration-200 group-hover:shadow-lg hover:bg-primary/90">
-                                                        <ShoppingBag className="h-4 w-4" />
-                                                        Pesan Sekarang
-                                                    </Button>
-                                                </a>
-                                            </motion.div>
+                                                <Button className="w-full gap-2 bg-primary transition-all duration-200 group-hover:shadow-lg hover:bg-primary/90">
+                                                    <ShoppingBag className="h-4 w-4" />
+                                                    Pesan Sekarang
+                                                </Button>
+                                            </a>
                                         </div>
 
                                         <div className="absolute -top-8 -right-8 h-32 w-32 rounded-full bg-primary/5 blur-2xl transition-all duration-300 group-hover:bg-primary/10" />
                                         <div className="absolute -bottom-8 -left-8 h-32 w-32 rounded-full bg-secondary/30 blur-2xl transition-all duration-300 group-hover:bg-secondary/50" />
-                                    </motion.div>
+                                    </div>
                                 ))}
                             </InfiniteSlider>
                         </motion.div>
@@ -782,13 +751,7 @@ export default function Home({ variants, hampers }: HomeProps) {
                             </motion.div>
                         </motion.div>
 
-                        <motion.div
-                            initial={{ opacity: 0, x: 50, scale: 0.95 }}
-                            whileInView={{ opacity: 1, x: 0, scale: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.7, delay: 0.3 }}
-                            className="relative"
-                        >
+                        <div className="relative">
                             <motion.div
                                 initial={{ opacity: 0, scale: 0.8 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
@@ -797,17 +760,11 @@ export default function Home({ variants, hampers }: HomeProps) {
                                 className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-secondary/30 to-amber-500/20 blur-2xl"
                             />
 
-                            <motion.div
-                                initial={{ opacity: 0, rotate: -2 }}
-                                whileInView={{ opacity: 1, rotate: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.6, delay: 0.6 }}
-                                className="relative overflow-hidden rounded-3xl border-4 border-secondary shadow-2xl"
-                            >
+                            <div className="relative overflow-hidden rounded-3xl border-4 border-secondary shadow-2xl">
                                 <img src="/assets/images/hampers.jpg" alt="Paket Hampers Serena Cookies" className="h-full w-full object-cover" />
 
                                 <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent opacity-0 transition-opacity duration-300 hover:opacity-100" />
-                            </motion.div>
+                            </div>
 
                             <motion.div
                                 initial={{ opacity: 0, y: 20, scale: 0 }}
@@ -826,7 +783,7 @@ export default function Home({ variants, hampers }: HomeProps) {
                                     </div>
                                 </div>
                             </motion.div>
-                        </motion.div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -1037,13 +994,7 @@ export default function Home({ variants, hampers }: HomeProps) {
                             </motion.div>
                         </motion.div>
 
-                        <motion.div
-                            initial={{ opacity: 0, x: 50, scale: 0.95 }}
-                            whileInView={{ opacity: 1, x: 0, scale: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.7, delay: 0.4 }}
-                            className="relative min-h-[500px]"
-                        >
+                        <div className="relative min-h-[500px]">
                             {/* Decorative frame */}
                             <motion.div
                                 initial={{ opacity: 0, scale: 0.8 }}
@@ -1054,13 +1005,7 @@ export default function Home({ variants, hampers }: HomeProps) {
                             />
 
                             {/* Map container */}
-                            <motion.div
-                                initial={{ opacity: 0, rotate: -1 }}
-                                whileInView={{ opacity: 1, rotate: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.6, delay: 0.3 }}
-                                className="relative h-full overflow-hidden rounded-3xl border-4 border-white shadow-2xl"
-                            >
+                            <div className="relative h-full overflow-hidden rounded-3xl border-4 border-white shadow-2xl">
                                 <iframe
                                     src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d553.2967313010594!2d112.62540980340901!3d-7.913166332428869!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sid!2sid!4v1761537989785!5m2!1sid!2sid"
                                     width="100%"
@@ -1070,7 +1015,7 @@ export default function Home({ variants, hampers }: HomeProps) {
                                     loading="lazy"
                                     referrerPolicy="no-referrer-when-downgrade"
                                 ></iframe>
-                            </motion.div>
+                            </div>
 
                             {/* Floating badge */}
                             <motion.div
@@ -1090,13 +1035,13 @@ export default function Home({ variants, hampers }: HomeProps) {
                                     </div>
                                 </div>
                             </motion.div>
-                        </motion.div>
+                        </div>
                     </div>
                 </div>
             </section>
 
             {/* Payment Methods Section */}
-            <section className="bg-gradient-to-b from-muted/30 to-secondary py-12 md:py-16">
+            <section className="bg-amber-50 py-12 md:py-16">
                 <div className="container mx-auto max-w-4xl px-4">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}

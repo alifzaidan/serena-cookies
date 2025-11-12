@@ -252,7 +252,7 @@ export default function Hamper({ hampers }: HamperProps) {
                             </motion.p>
                         </motion.div>
 
-                        <div className="grid grid-cols-2 gap-6 lg:grid-cols-3">
+                        <div className="grid grid-cols-2 gap-4 md:gap-6 lg:grid-cols-3">
                             {eidHampers.map((hamper, index) => renderHamperCard(hamper, index))}
                         </div>
                     </div>
@@ -300,7 +300,7 @@ export default function Hamper({ hampers }: HamperProps) {
                             </motion.p>
                         </motion.div>
 
-                        <div className="grid grid-cols-2 gap-6 lg:grid-cols-3">
+                        <div className="grid grid-cols-2 gap-4 md:gap-6 lg:grid-cols-3">
                             {newYearHampers.map((hamper, index) => renderHamperCard(hamper, index))}
                         </div>
                     </div>

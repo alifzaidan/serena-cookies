@@ -224,7 +224,7 @@ export default function Products({ products, variants, currentVariant, variantFi
                                     Menampilkan {products.length} produk {currentVariant && `dari varian ${currentVariant.name}`}
                                 </p>
                             </div>
-                            <div className="grid grid-cols-2 gap-6 lg:grid-cols-3 xl:grid-cols-4">
+                            <div className="grid grid-cols-2 gap-4 md:gap-6 lg:grid-cols-3 xl:grid-cols-4">
                                 {products.map((product, index) => (
                                     <motion.div
                                         key={product.id}
