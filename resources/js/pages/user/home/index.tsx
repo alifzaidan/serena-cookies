@@ -45,20 +45,20 @@ export default function Home({ variants, hampers }: HomeProps) {
 
             {/* Hero Section */}
             <section className="relative bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/assets/images/all-variant.jpg')" }}>
-                <div className="absolute inset-0 bg-primary/70" aria-hidden />
+                <div className="absolute inset-0 bg-gradient-to-b from-primary/60 via-primary/50 to-primary/70" aria-hidden />
                 <div className="relative z-10 container mx-auto max-w-7xl px-4 pt-32 pb-16 md:pt-40 md:pb-24">
                     <div className="space-y-4 text-center text-white md:space-y-6">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.2 }}
-                            className="inline-flex w-fit items-center gap-2 rounded-full bg-secondary px-4 py-2 text-xs font-medium text-amber-900 md:text-sm"
+                            className="inline-flex w-fit items-center gap-2 rounded-full bg-secondary px-4 py-2 text-xs font-medium text-amber-900 shadow-lg backdrop-blur-sm md:text-sm"
                         >
                             <Sparkles className="h-4 w-4" />
                             Kue Kering Premium
                         </motion.div>
 
-                        <div className="flex justify-center gap-1.5 font-black-mango text-4xl font-bold tracking-tight sm:text-5xl md:gap-3 md:text-6xl lg:text-7xl">
+                        <div className="flex flex-wrap justify-center gap-1.5 font-black-mango text-6xl font-bold tracking-tight drop-shadow-2xl md:gap-3 md:text-7xl">
                             <TextEffect
                                 per="char"
                                 delay={0.5}
@@ -114,7 +114,7 @@ export default function Home({ variants, hampers }: HomeProps) {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ duration: 0.6, delay: 0.3 }}
-                            className="mx-auto mt-4 max-w-2xl text-base text-amber-100 md:text-lg"
+                            className="mx-auto mt-4 max-w-2xl text-base font-medium text-amber-50 md:text-lg"
                         >
                             Kue kering berkualitas premium dengan cita rasa istimewa. Dibuat dengan bahan pilihan terbaik untuk kebahagiaan keluarga
                             Anda.
@@ -126,7 +126,7 @@ export default function Home({ variants, hampers }: HomeProps) {
                             transition={{ duration: 0.5, delay: 1 }}
                             className="flex w-full flex-col justify-center gap-3 sm:flex-row"
                         >
-                            <Button size="lg" variant="secondary" className="gap-2" asChild>
+                            <Button size="lg" variant="secondary" className="gap-2 shadow-xl" asChild>
                                 <a
                                     href="https://wa.me/6285649796210?text=Halo%2C%20saya%20ingin%20memesan%20produk%20Serena%20Cookies."
                                     target="_blank"
@@ -136,9 +136,14 @@ export default function Home({ variants, hampers }: HomeProps) {
                                     Pesan Sekarang
                                 </a>
                             </Button>
-                            <Button size="lg" variant="outline" asChild>
-                                <Link href="/catalogs" className="gap-2">
-                                    Lihat Katalog
+                            <Button
+                                size="lg"
+                                variant="outline"
+                                className="border-2 border-white bg-white/10 text-white shadow-xl backdrop-blur-sm hover:bg-white/20"
+                                asChild
+                            >
+                                <Link href="/products" className="gap-2">
+                                    Lihat Produk Kami
                                     <ArrowRight className="h-5 w-5" />
                                 </Link>
                             </Button>
@@ -343,8 +348,8 @@ export default function Home({ variants, hampers }: HomeProps) {
 
                     <div className="grid gap-8 md:grid-cols-2">
                         <motion.div
-                            initial={{ opacity: 0, x: -50 }}
-                            whileInView={{ opacity: 1, x: 0 }}
+                            initial={{ opacity: 0, y: -50 }}
+                            whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.6, delay: 0.2 }}
                             className="relative overflow-hidden rounded-3xl bg-secondary shadow-sm"
@@ -374,8 +379,8 @@ export default function Home({ variants, hampers }: HomeProps) {
                         </motion.div>
 
                         <motion.div
-                            initial={{ opacity: 0, x: 50 }}
-                            whileInView={{ opacity: 1, x: 0 }}
+                            initial={{ opacity: 0, y: 50 }}
+                            whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.6, delay: 0.3 }}
                             className="relative overflow-hidden rounded-3xl bg-secondary shadow-sm"
@@ -433,8 +438,8 @@ export default function Home({ variants, hampers }: HomeProps) {
                             <div className="absolute -top-24 left-2/3 h-44 w-44 -translate-x-1/2 rounded-full bg-primary/30 blur-3xl" aria-hidden />
                             <div className="relative p-8">
                                 <motion.div
-                                    initial={{ opacity: 0, x: -30 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
+                                    initial={{ opacity: 0, y: -30 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ duration: 0.6, delay: 0.6 }}
                                     className="space-y-4 md:w-1/2"
@@ -463,8 +468,8 @@ export default function Home({ variants, hampers }: HomeProps) {
                                     </motion.p>
                                 </motion.div>
                                 <motion.img
-                                    initial={{ opacity: 0, scale: 0.9, x: 50 }}
-                                    whileInView={{ opacity: 1, scale: 1, x: 0 }}
+                                    initial={{ opacity: 0, scale: 0.9, y: 50 }}
+                                    whileInView={{ opacity: 1, scale: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ duration: 0.7, delay: 0.8 }}
                                     src="/assets/images/about.jpg"
@@ -489,8 +494,8 @@ export default function Home({ variants, hampers }: HomeProps) {
                     >
                         <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
                             <motion.div
-                                initial={{ opacity: 0, x: -30 }}
-                                whileInView={{ opacity: 1, x: 0 }}
+                                initial={{ opacity: 0, y: -30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.6, delay: 0.2 }}
                                 className="md:w-1/2"
@@ -846,7 +851,7 @@ export default function Home({ variants, hampers }: HomeProps) {
                             initial={{ opacity: 0, scale: 0.8 }}
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: 0.2, type: 'spring' }}
+                            transition={{ duration: 0.5, delay: 0.1, type: 'spring' }}
                             className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-sm font-semibold text-primary"
                         >
                             <MapPin className="h-4 w-4" />
@@ -856,7 +861,7 @@ export default function Home({ variants, hampers }: HomeProps) {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: 0.3 }}
+                            transition={{ duration: 0.6, delay: 0.1 }}
                             className="mb-4 font-black-mango text-3xl font-bold md:text-4xl"
                         >
                             Kunjungi <span className="bg-gradient-to-r from-primary to-amber-600 bg-clip-text text-transparent">Toko Kami</span>
@@ -865,7 +870,7 @@ export default function Home({ variants, hampers }: HomeProps) {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: 0.4 }}
+                            transition={{ duration: 0.6, delay: 0.1 }}
                             className="text-lg text-muted-foreground"
                         >
                             Temukan lokasi toko kami dan belanja langsung kue kering favorit Anda
@@ -877,14 +882,14 @@ export default function Home({ variants, hampers }: HomeProps) {
                             initial={{ opacity: 0, x: -50 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: 0.3 }}
+                            transition={{ duration: 0.6, delay: 0.1 }}
                             className="space-y-6"
                         >
                             <motion.div
                                 initial={{ opacity: 0, y: 30 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: 0.5 }}
+                                transition={{ duration: 0.5, delay: 0.1 }}
                                 className="group relative overflow-hidden rounded-3xl bg-white shadow-lg transition-all duration-300 hover:shadow-xl"
                             >
                                 {/* Decorative gradient overlay */}
@@ -895,7 +900,7 @@ export default function Home({ variants, hampers }: HomeProps) {
                                         initial={{ scale: 0, rotate: -45 }}
                                         whileInView={{ scale: 1, rotate: 0 }}
                                         viewport={{ once: true }}
-                                        transition={{ duration: 0.5, delay: 0.6, type: 'spring' }}
+                                        transition={{ duration: 0.5, delay: 0.1, type: 'spring' }}
                                         className="mb-4 flex items-center gap-3"
                                     >
                                         <div className="rounded-full bg-gradient-to-br from-primary/20 to-amber-500/20 p-3 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg">
@@ -908,7 +913,7 @@ export default function Home({ variants, hampers }: HomeProps) {
                                         initial={{ opacity: 0, y: 20 }}
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true }}
-                                        transition={{ duration: 0.5, delay: 0.7 }}
+                                        transition={{ duration: 0.5, delay: 0.2 }}
                                         className="space-y-3"
                                     >
                                         <div className="rounded-2xl bg-amber-50 p-4 transition-all duration-300 hover:bg-amber-100/50">
@@ -922,7 +927,7 @@ export default function Home({ variants, hampers }: HomeProps) {
                                             initial={{ scaleX: 0 }}
                                             whileInView={{ scaleX: 1 }}
                                             viewport={{ once: true }}
-                                            transition={{ duration: 0.6, delay: 0.8 }}
+                                            transition={{ duration: 0.6, delay: 0.3 }}
                                             className="my-4 h-px w-full origin-left bg-gradient-to-r from-primary/20 via-primary/50 to-primary/20"
                                         />
 
@@ -934,11 +939,11 @@ export default function Home({ variants, hampers }: HomeProps) {
                                             <div className="space-y-2 text-sm">
                                                 <div className="flex items-center justify-between rounded-lg bg-white/50 p-2 backdrop-blur-sm">
                                                     <span className="font-medium text-gray-700">Senin - Jumat</span>
-                                                    <span className="font-semibold text-primary">08.00 - 20.00 WIB</span>
+                                                    <span className="font-semibold text-primary">08.00 - 17.00 WIB</span>
                                                 </div>
                                                 <div className="flex items-center justify-between rounded-lg bg-white/50 p-2 backdrop-blur-sm">
                                                     <span className="font-medium text-gray-700">Sabtu - Minggu</span>
-                                                    <span className="font-semibold text-primary">08.00 - 21.00 WIB</span>
+                                                    <span className="font-semibold text-primary">08.00 - 16.00 WIB</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -947,7 +952,7 @@ export default function Home({ variants, hampers }: HomeProps) {
                                             initial={{ scaleX: 0 }}
                                             whileInView={{ scaleX: 1 }}
                                             viewport={{ once: true }}
-                                            transition={{ duration: 0.6, delay: 0.9 }}
+                                            transition={{ duration: 0.6, delay: 0.3 }}
                                             className="my-4 h-px w-full origin-left bg-gradient-to-r from-primary/20 via-primary/50 to-primary/20"
                                         />
 
@@ -1015,7 +1020,7 @@ export default function Home({ variants, hampers }: HomeProps) {
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                transition={{ duration: 0.6, delay: 0.8 }}
+                                transition={{ duration: 0.6, delay: 0.2 }}
                                 className="text-center"
                             >
                                 <a
@@ -1053,7 +1058,7 @@ export default function Home({ variants, hampers }: HomeProps) {
                                 initial={{ opacity: 0, rotate: -1 }}
                                 whileInView={{ opacity: 1, rotate: 0 }}
                                 viewport={{ once: true }}
-                                transition={{ duration: 0.6, delay: 0.7 }}
+                                transition={{ duration: 0.6, delay: 0.3 }}
                                 className="relative h-full overflow-hidden rounded-3xl border-4 border-white shadow-2xl"
                             >
                                 <iframe
@@ -1087,6 +1092,88 @@ export default function Home({ variants, hampers }: HomeProps) {
                             </motion.div>
                         </motion.div>
                     </div>
+                </div>
+            </section>
+
+            {/* Payment Methods Section */}
+            <section className="bg-gradient-to-b from-muted/30 to-secondary py-12 md:py-16">
+                <div className="container mx-auto max-w-4xl px-4">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        className="mb-12 text-center"
+                    >
+                        <motion.p
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: 0.1 }}
+                            className="text-sm font-medium tracking-wide text-primary uppercase"
+                        >
+                            Metode Pembayaran
+                        </motion.p>
+                        <motion.h2
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6, delay: 0.1 }}
+                            className="mt-2 font-black-mango text-3xl font-bold md:text-4xl"
+                        >
+                            Kemudahan <span className="bg-gradient-to-r from-primary to-amber-600 bg-clip-text text-transparent">Pembayaran</span>{' '}
+                            untuk Anda
+                        </motion.h2>
+                        <motion.p
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6, delay: 0.2 }}
+                            className="mx-auto mt-4 max-w-2xl text-muted-foreground"
+                        >
+                            Transfer dengan mudah dan aman melalui Bank BCA
+                        </motion.p>
+                    </motion.div>
+
+                    {/* BCA Card - Centered and Larger */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 40, scale: 0.9 }}
+                        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.2 }}
+                        className="group relative mx-auto max-w-md overflow-hidden rounded-3xl bg-white shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+                    >
+                        <div className="absolute -top-12 -right-12 h-48 w-48 rounded-full bg-blue-500/10 blur-3xl transition-all duration-300 group-hover:bg-blue-500/20" />
+                        <div className="absolute -bottom-12 -left-12 h-48 w-48 rounded-full bg-blue-400/10 blur-3xl transition-all duration-300 group-hover:bg-blue-400/20" />
+
+                        <div className="relative p-10">
+                            <motion.div
+                                initial={{ scale: 0, rotate: -45 }}
+                                whileInView={{ scale: 1, rotate: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: 0.2, type: 'spring' }}
+                                className="mb-8 flex justify-center"
+                            >
+                                <div className="rounded-3xl bg-gradient-to-br from-blue-50 to-blue-100 p-8 shadow-md transition-all duration-300 group-hover:scale-110 group-hover:shadow-xl">
+                                    <img src="/assets/images/bca-logo.png" alt="BCA" className="h-24 w-auto object-contain md:h-24" />
+                                </div>
+                            </motion.div>
+
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: 0.2 }}
+                                className="text-center"
+                            >
+                                <div className="mb-6 rounded-3xl bg-gradient-to-br from-blue-50 to-blue-100/50 p-6 shadow-sm">
+                                    <p className="mb-2 text-sm font-medium tracking-wide text-gray-600 uppercase">Nomor Rekening</p>
+                                    <p className="mb-2 font-mono text-2xl font-bold tracking-wider text-blue-600 md:text-3xl">8160918242</p>
+                                    <p className="text-2xl font-bold text-blue-600">Ari Asrivita</p>
+                                </div>
+                            </motion.div>
+                        </div>
+                    </motion.div>
                 </div>
             </section>
         </UserLayout>

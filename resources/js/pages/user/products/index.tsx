@@ -55,20 +55,20 @@ export default function Products({ products, variants, currentVariant, variantFi
 
             {/* Hero Section */}
             <section className="relative bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/assets/images/all-variant.jpg')" }}>
-                <div className="absolute inset-0 bg-primary/70" aria-hidden />
+                <div className="absolute inset-0 bg-primary/50" aria-hidden />
                 <div className="relative z-10 container mx-auto max-w-7xl px-4 pt-32 pb-16 md:pt-40 md:pb-24">
                     <div className="space-y-4 text-center text-white md:space-y-6">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.2 }}
-                            className="inline-flex w-fit items-center gap-2 rounded-full bg-secondary px-4 py-2 text-xs font-medium text-amber-900 md:text-sm"
+                            className="inline-flex w-fit items-center gap-2 rounded-full bg-secondary px-4 py-2 text-xs font-medium text-amber-900 shadow-lg backdrop-blur-sm md:text-sm"
                         >
                             <Cookie className="h-4 w-4" />
                             {currentVariant ? `Varian ${currentVariant.name}` : 'Semua Produk'}
                         </motion.div>
 
-                        <div className="flex justify-center gap-1.5 font-black-mango text-4xl font-bold tracking-tight sm:text-5xl md:gap-3 md:text-6xl lg:text-7xl">
+                        <div className="flex flex-wrap justify-center gap-1.5 font-black-mango text-6xl font-bold tracking-tight drop-shadow-2xl md:gap-3 md:text-7xl">
                             {currentVariant ? (
                                 <>
                                     <TextEffect
@@ -180,7 +180,7 @@ export default function Products({ products, variants, currentVariant, variantFi
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ duration: 0.6, delay: 0.3 }}
-                            className="mx-auto mt-4 max-w-2xl text-base text-amber-100 md:text-lg"
+                            className="mx-auto mt-4 max-w-2xl text-base font-medium text-amber-50 md:text-lg"
                         >
                             {currentVariant
                                 ? currentVariant.description || `Nikmati kelezatan kue kering varian ${currentVariant.name} dari Serena Cookies`
