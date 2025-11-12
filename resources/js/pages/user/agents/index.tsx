@@ -24,7 +24,7 @@ export default function Agents({ agents }: AgentsProps) {
 
             {/* Hero Section */}
             <section className="relative bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/assets/images/all-variant.jpg')" }}>
-                <div className="absolute inset-0 bg-primary/50" aria-hidden />
+                <div className="absolute inset-0 bg-gradient-to-b from-primary/60 via-primary/50 to-primary/70" aria-hidden />
                 <div className="relative z-10 container mx-auto max-w-7xl px-4 pt-32 pb-16 md:pt-40 md:pb-24">
                     <div className="space-y-4 text-center text-white md:space-y-6">
                         <motion.div
