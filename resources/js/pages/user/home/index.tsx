@@ -896,11 +896,11 @@ export default function Home({ variants, hampers }: HomeProps) {
                                             <div className="space-y-2 text-sm">
                                                 <div className="flex items-center justify-between rounded-lg bg-white/50 p-2 backdrop-blur-sm">
                                                     <span className="font-medium text-gray-700">Senin - Jumat</span>
-                                                    <span className="font-semibold text-primary">08.00 - 17.00 WIB</span>
+                                                    <span className="font-semibold text-primary">09.00 - 17.00 WIB</span>
                                                 </div>
                                                 <div className="flex items-center justify-between rounded-lg bg-white/50 p-2 backdrop-blur-sm">
                                                     <span className="font-medium text-gray-700">Sabtu - Minggu</span>
-                                                    <span className="font-semibold text-primary">08.00 - 16.00 WIB</span>
+                                                    <span className="font-semibold text-primary">09.00 - 16.00 WIB</span>
                                                 </div>
                                             </div>
                                         </div>
