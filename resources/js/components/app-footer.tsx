@@ -38,10 +38,6 @@ const otherItems: OtherItem[] = [
         title: 'Tentang Kami',
         href: '/about',
     },
-    {
-        title: 'Hubungi Kami',
-        href: '/contact',
-    },
 ];
 
 export default function AppFooter() {
@@ -112,6 +108,14 @@ export default function AppFooter() {
                                     </Link>
                                 </li>
                             ))}
+                            <a
+                                href="https://wa.me/6285649796210?text=Halo%2C%20saya%20ingin%20memesan%20produk%20Serena%20Cookies."
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-sm text-muted-foreground hover:text-primary hover:underline"
+                            >
+                                Hubungi Kami
+                            </a>
                         </ul>
                         <div className="mt-6">
                             <h4 className="mb-4 font-semibold text-primary dark:text-secondary">Ikuti Kami</h4>
