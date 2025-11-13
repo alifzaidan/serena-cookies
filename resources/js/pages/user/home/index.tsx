@@ -116,8 +116,8 @@ export default function Home({ variants, hampers }: HomeProps) {
                             transition={{ duration: 0.6, delay: 0.3 }}
                             className="mx-auto mt-4 max-w-2xl text-base font-medium text-amber-50 md:text-lg"
                         >
-                            Kue kering berkualitas premium dengan cita rasa istimewa. Dibuat dengan bahan pilihan terbaik untuk kebahagiaan keluarga
-                            Anda.
+                            Kue kering berkualitas premium dengan cita rasa istimewa. Dibuat secara homemade dengan higienis. Sebuah pilihan terbaik
+                            untuk menemani saat-saat bahagia Anda.
                         </motion.p>
 
                         <motion.div
@@ -980,11 +980,7 @@ export default function Home({ variants, hampers }: HomeProps) {
                                 transition={{ duration: 0.6, delay: 0.2 }}
                                 className="text-center"
                             >
-                                <a
-                                    href="https://www.google.com/maps/dir//Perumahan+BPTP+Blok+B-7,+Jl.+Atletik,+Kepuharjo,+Kec.+Karangploso,+Kabupaten+Malang,+Jawa+Timur"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
+                                <a href="https://maps.app.goo.gl/dEKMKJxXVwmfPcUs7" target="_blank" rel="noopener noreferrer">
                                     <Button size="lg" className="gap-2 shadow-lg transition-all duration-200 hover:scale-105 hover:shadow-xl">
                                         <MapPin className="h-5 w-5" />
                                         Buka di Google Maps
@@ -1007,7 +1003,7 @@ export default function Home({ variants, hampers }: HomeProps) {
                             {/* Map container */}
                             <div className="relative h-full overflow-hidden rounded-3xl border-4 border-white shadow-2xl">
                                 <iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d553.2967313010594!2d112.62540980340901!3d-7.913166332428869!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sid!2sid!4v1761537989785!5m2!1sid!2sid"
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.8281420558096!2d112.62347567580109!3d-7.913014178763814!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd62a067fbd2799%3A0x363d324ca270b9a3!2sSerena%20Cookies!5e0!3m2!1sid!2sid!4v1763019893045!5m2!1sid!2sid"
                                     width="100%"
                                     height="100%"
                                     style={{ border: 0, minHeight: '500px' }}

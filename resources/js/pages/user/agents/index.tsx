@@ -235,7 +235,7 @@ export default function Agents({ agents }: AgentsProps) {
                                         </div>
                                         <div>
                                             <p className="font-semibold text-secondary">Diskon Spesial</p>
-                                            <p className="text-sm text-secondary/80">15% untuk setiap pembelian</p>
+                                            <p className="text-sm text-secondary/80">12,5% untuk setiap pembelian</p>
                                         </div>
                                     </motion.div>
                                 </div>
