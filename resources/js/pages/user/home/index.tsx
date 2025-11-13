@@ -116,8 +116,8 @@ export default function Home({ variants, hampers }: HomeProps) {
                             transition={{ duration: 0.6, delay: 0.3 }}
                             className="mx-auto mt-4 max-w-2xl text-base font-medium text-amber-50 md:text-lg"
                         >
-                            Kue kering berkualitas premium dengan cita rasa istimewa. Dibuat secara homemade dengan higienis. Sebuah pilihan terbaik
-                            untuk menemani saat-saat bahagia Anda.
+                            Kue kering berkualitas premium dengan cita rasa istimewa. Dibuat secara homemade dengan higienis. Menjadi pilihan terbaik
+                            untuk melengkapi di hari-hari spesial anda.
                         </motion.p>
 
                         <motion.div
