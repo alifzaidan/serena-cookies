@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('hampers', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->foreignId('category_id')->constrained('hamper_categories')->onDelete('cascade');
             $table->string('name');
             $table->text('description')->nullable();
-            $table->enum('category', ['eid', 'new_year']);
             $table->bigInteger('price')->default(0);
             $table->string('image')->nullable();
             $table->boolean('is_favorite')->default(false);

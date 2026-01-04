@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Hamper;
+use App\Models\HamperCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
@@ -11,7 +12,9 @@ class HamperController extends Controller
 {
     public function index()
     {
-        $hampers = Hamper::orderBy('created_at', 'desc')->get();
+        $hampers = Hamper::with('category')
+            ->orderBy('created_at', 'desc')
+            ->get();
 
         return Inertia::render('admin/hampers/index', [
             'hampers' => $hampers,
@@ -20,7 +23,11 @@ class HamperController extends Controller
 
     public function create()
     {
-        return Inertia::render('admin/hampers/create');
+        $categories = HamperCategory::orderBy('name')->get();
+
+        return Inertia::render('admin/hampers/create', [
+            'categories' => $categories,
+        ]);
     }
 
     public function store(Request $request)
@@ -28,7 +35,7 @@ class HamperController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'category' => 'required|in:eid,new_year',
+            'category_id' => 'required|exists:hamper_categories,id',
             'price' => 'required|numeric|min:0',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
             'is_favorite' => 'nullable|boolean',
@@ -45,8 +52,12 @@ class HamperController extends Controller
 
     public function edit(Hamper $hamper)
     {
+        $hamper->load('category');
+        $categories = HamperCategory::orderBy('name')->get();
+
         return Inertia::render('admin/hampers/edit', [
             'hamper' => $hamper,
+            'categories' => $categories,
         ]);
     }
 
@@ -55,7 +66,7 @@ class HamperController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'category' => 'required|in:eid,new_year',
+            'category_id' => 'required|exists:hamper_categories,id',
             'price' => 'required|numeric|min:0',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
             'is_favorite' => 'nullable|boolean',

@@ -26,21 +26,30 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 const MAX_FILE_SIZE = 2 * 1024 * 1024;
 
-export default function CreateHamper() {
+interface HamperCategory {
+    id: number;
+    name: string;
+}
+
+interface CreateHamperProps {
+    categories: HamperCategory[];
+}
+
+export default function CreateHamper({ categories }: CreateHamperProps) {
     const [imagePreview, setImagePreview] = useState<string | null>(null);
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     const { data, setData, post, processing, errors } = useForm<{
         name: string;
         description: string;
-        category: string;
+        category_id: string;
         price: number;
         image: File | null;
         is_favorite: boolean;
     }>({
         name: '',
         description: '',
-        category: '',
+        category_id: '',
         price: 0,
         image: null,
         is_favorite: false,
@@ -113,16 +122,19 @@ export default function CreateHamper() {
 
                     <div className="space-y-2">
                         <Label htmlFor="category">Kategori *</Label>
-                        <Select value={data.category} onValueChange={(value) => setData('category', value)}>
+                        <Select value={data.category_id} onValueChange={(value) => setData('category_id', value)}>
                             <SelectTrigger>
                                 <SelectValue placeholder="Pilih Kategori" />
                             </SelectTrigger>
                             <SelectContent>
-                                <SelectItem value="eid">Idul Fitri</SelectItem>
-                                <SelectItem value="new_year">Akhir Tahun</SelectItem>
+                                {categories.map((category) => (
+                                    <SelectItem key={category.id} value={category.id.toString()}>
+                                        {category.name}
+                                    </SelectItem>
+                                ))}
                             </SelectContent>
                         </Select>
-                        <InputError message={errors.category} />
+                        <InputError message={errors.category_id} />
                     </div>
 
                     <div className="space-y-2">

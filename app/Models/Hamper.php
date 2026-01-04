@@ -15,4 +15,9 @@ class Hamper extends Model
     {
         return $this->image ? asset('storage/' . $this->image) : null;
     }
+
+    public function category()
+    {
+        return $this->belongsTo(HamperCategory::class, 'category_id');
+    }
 }

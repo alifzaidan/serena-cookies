@@ -57,7 +57,10 @@ export type Hamper = {
     id: string;
     name: string;
     description?: string;
-    category: 'eid' | 'new_year';
+    category: {
+        id: number;
+        name: string;
+    };
     price: number;
     image?: string;
     is_favorite: boolean;
@@ -115,7 +118,7 @@ export const columns: ColumnDef<Hamper>[] = [
         accessorKey: 'category',
         header: ({ column }) => <DataTableColumnHeader column={column} title="Kategori" />,
         cell: ({ row }) => {
-            return <Badge className="font-medium">{row.original.category === 'eid' ? 'Idul Fitri' : 'Tahun Baru'}</Badge>;
+            return <Badge className="font-medium">{row.original.category.name}</Badge>;
         },
     },
     {

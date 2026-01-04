@@ -28,19 +28,28 @@ interface Hamper {
     id: string;
     name: string;
     description?: string;
-    category: 'eid' | 'new_year';
+    category: {
+        id: number;
+        name: string;
+    };
     price: number;
     image?: string;
     is_favorite: boolean;
 }
 
+interface HamperCategory {
+    id: number;
+    name: string;
+}
+
 interface EditHamperProps {
     hamper: Hamper;
+    categories: HamperCategory[];
 }
 
 const MAX_FILE_SIZE = 2 * 1024 * 1024;
 
-export default function EditHamper({ hamper }: EditHamperProps) {
+export default function EditHamper({ hamper, categories }: EditHamperProps) {
     const [imagePreview, setImagePreview] = useState<string | null>(hamper.image ? `/storage/${hamper.image}` : null);
     const existingImage = hamper.image || null;
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -48,7 +57,7 @@ export default function EditHamper({ hamper }: EditHamperProps) {
     const { data, setData, post, processing, errors } = useForm({
         name: hamper.name,
         description: hamper.description || '',
-        category: hamper.category,
+        category_id: hamper.category.id.toString(),
         price: hamper.price,
         is_favorite: hamper.is_favorite,
         image: null as File | null,
@@ -122,16 +131,19 @@ export default function EditHamper({ hamper }: EditHamperProps) {
 
                     <div className="space-y-2">
                         <Label htmlFor="category">Kategori *</Label>
-                        <Select value={data.category} onValueChange={(value) => setData('category', value as 'eid' | 'new_year')}>
+                        <Select value={data.category_id} onValueChange={(value) => setData('category_id', value)}>
                             <SelectTrigger>
                                 <SelectValue placeholder="Pilih Kategori" />
                             </SelectTrigger>
                             <SelectContent>
-                                <SelectItem value="eid">Idul Fitri</SelectItem>
-                                <SelectItem value="new_year">Tahun Baru</SelectItem>
+                                {categories.map((category) => (
+                                    <SelectItem key={category.id} value={category.id.toString()}>
+                                        {category.name}
+                                    </SelectItem>
+                                ))}
                             </SelectContent>
                         </Select>
-                        <InputError message={errors.category} />
+                        <InputError message={errors.category_id} />
                     </div>
 
                     <div className="space-y-2">

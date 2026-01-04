@@ -3,7 +3,7 @@ import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { SharedData, type NavItem } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
-import { Cookie, CookingPot, LayoutGrid, NotebookText, ShoppingBag, Users } from 'lucide-react';
+import { CalendarDays, Cookie, CookingPot, LayoutGrid, NotebookText, ShoppingBag, Users } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const allNavItems: (NavItem & { roles: string[] })[] = [
@@ -23,6 +23,12 @@ const allNavItems: (NavItem & { roles: string[] })[] = [
         title: 'Produk',
         href: '/admin/products',
         icon: Cookie,
+        roles: ['admin'],
+    },
+    {
+        title: 'Kategori Hampers',
+        href: '/admin/hamper-categories',
+        icon: CalendarDays,
         roles: ['admin'],
     },
     {
