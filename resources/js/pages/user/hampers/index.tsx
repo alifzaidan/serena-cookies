@@ -9,7 +9,10 @@ interface Hamper {
     id: string;
     name: string;
     description?: string;
-    category: 'eid' | 'new_year';
+    category: {
+        id: number;
+        name: string;
+    };
     price: number;
     image?: string;
     is_favorite: boolean;
@@ -29,8 +32,17 @@ export default function Hamper({ hampers }: HamperProps) {
     };
 
     // Filter hampers berdasarkan kategori
-    const eidHampers = hampers.filter((hamper) => hamper.category === 'eid');
-    const newYearHampers = hampers.filter((hamper) => hamper.category === 'new_year');
+    const categorizedHampers = hampers.reduce(
+        (acc, hamper) => {
+            const categoryName = hamper.category.name.toLowerCase();
+            if (!acc[categoryName]) {
+                acc[categoryName] = [];
+            }
+            acc[categoryName].push(hamper);
+            return acc;
+        },
+        {} as Record<string, Hamper[]>,
+    );
 
     const renderHamperCard = (hamper: Hamper, index: number) => (
         <motion.div
@@ -63,7 +75,7 @@ export default function Hamper({ hampers }: HamperProps) {
                     transition={{ duration: 0.5, delay: 0.1 + index * 0.1, type: 'spring' }}
                     className="absolute top-3 left-3 rounded-full bg-amber-500 px-3 py-1 text-xs font-semibold text-white shadow-lg"
                 >
-                    {hamper.category === 'eid' ? 'Idul Fitri' : 'Tahun Baru'}
+                    {hamper.category.name}
                 </motion.div>
 
                 {hamper.is_favorite && (
@@ -202,18 +214,24 @@ export default function Hamper({ hampers }: HamperProps) {
                 </div>
             </section>
 
-            {/* Hampers Idul Fitri Section */}
-            {eidHampers.length > 0 && (
-                <section className="relative bg-gradient-to-b from-secondary to-amber-50 py-12 md:py-16">
-                    <div
-                        className="absolute inset-x-0 top-0 h-36 bg-cover bg-center opacity-50"
-                        style={{
-                            backgroundImage: "url('/assets/images/pattern.jpg')",
-                            maskImage: 'linear-gradient(to top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 100%)',
-                            WebkitMaskImage: 'linear-gradient(to top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 100%)',
-                        }}
-                        aria-hidden
-                    />
+            {Object.entries(categorizedHampers).map(([categoryName, categoryHampers], sectionIndex) => (
+                <section
+                    key={categoryName}
+                    className={`relative py-12 md:py-16 ${
+                        sectionIndex % 2 === 0 ? 'bg-gradient-to-b from-secondary to-amber-50' : 'bg-gradient-to-b from-amber-50 to-secondary'
+                    }`}
+                >
+                    {sectionIndex === 0 && (
+                        <div
+                            className="absolute inset-x-0 top-0 h-36 bg-cover bg-center opacity-50"
+                            style={{
+                                backgroundImage: "url('/assets/images/pattern.jpg')",
+                                maskImage: 'linear-gradient(to top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 100%)',
+                                WebkitMaskImage: 'linear-gradient(to top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 100%)',
+                            }}
+                            aria-hidden
+                        />
+                    )}
                     <div className="container mx-auto max-w-7xl px-4">
                         <motion.div
                             initial={{ opacity: 0, y: 30 }}
@@ -229,7 +247,7 @@ export default function Hamper({ hampers }: HamperProps) {
                                 transition={{ duration: 0.5, delay: 0.2 }}
                                 className="text-sm font-medium tracking-wide text-primary uppercase"
                             >
-                                Katalog Ramadhan
+                                Katalog Spesial
                             </motion.p>
                             <motion.h2
                                 initial={{ opacity: 0, y: 20 }}
@@ -239,7 +257,9 @@ export default function Hamper({ hampers }: HamperProps) {
                                 className="mt-2 font-black-mango text-3xl font-bold md:text-4xl"
                             >
                                 Paket Hampers{' '}
-                                <span className="bg-gradient-to-r from-primary to-amber-600 bg-clip-text text-transparent">Idul Fitri 1447H</span>
+                                <span className="bg-gradient-to-r from-primary to-amber-600 bg-clip-text text-transparent">
+                                    {categoryHampers[0]?.category.name}
+                                </span>
                             </motion.h2>
                             <motion.p
                                 initial={{ opacity: 0, y: 20 }}
@@ -248,64 +268,16 @@ export default function Hamper({ hampers }: HamperProps) {
                                 transition={{ duration: 0.6, delay: 0.4 }}
                                 className="mx-auto mt-4 max-w-2xl text-muted-foreground"
                             >
-                                Hadiah sempurna untuk merayakan Idul Fitri dengan kemasan premium dan pilihan varian terbaik
+                                Hadiah sempurna untuk merayakan momen spesial dengan kemasan premium dan pilihan varian terbaik
                             </motion.p>
                         </motion.div>
 
                         <div className="grid grid-cols-2 gap-4 md:gap-6 lg:grid-cols-3">
-                            {eidHampers.map((hamper, index) => renderHamperCard(hamper, index))}
+                            {categoryHampers.map((hamper, index) => renderHamperCard(hamper, index))}
                         </div>
                     </div>
                 </section>
-            )}
-
-            {/* Hampers Tahun Baru Section */}
-            {newYearHampers.length > 0 && (
-                <section className="bg-gradient-to-b from-amber-50 to-secondary py-12 md:py-16">
-                    <div className="container mx-auto max-w-7xl px-4">
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6 }}
-                            className="mb-12 text-center"
-                        >
-                            <motion.p
-                                initial={{ opacity: 0, scale: 0.8 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: 0.2 }}
-                                className="text-sm font-medium tracking-wide text-primary uppercase"
-                            >
-                                Katalog Perayaan
-                            </motion.p>
-                            <motion.h2
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.6, delay: 0.3 }}
-                                className="mt-2 font-black-mango text-3xl font-bold md:text-4xl"
-                            >
-                                Paket Hampers{' '}
-                                <span className="bg-gradient-to-r from-primary to-amber-600 bg-clip-text text-transparent">Tahun Baru</span>
-                            </motion.h2>
-                            <motion.p
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.6, delay: 0.4 }}
-                                className="mx-auto mt-4 max-w-2xl text-muted-foreground"
-                            >
-                                Sambut tahun baru dengan hampers spesial yang penuh kehangatan dan kebahagiaan
-                            </motion.p>
-                        </motion.div>
-
-                        <div className="grid grid-cols-2 gap-4 md:gap-6 lg:grid-cols-3">
-                            {newYearHampers.map((hamper, index) => renderHamperCard(hamper, index))}
-                        </div>
-                    </div>
-                </section>
-            )}
+            ))}
 
             {/* CTA Section */}
             <section className="relative overflow-hidden bg-primary py-16">

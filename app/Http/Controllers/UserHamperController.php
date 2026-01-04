@@ -10,7 +10,9 @@ class UserHamperController extends Controller
 {
     public function index()
     {
-        $hampers = Hamper::orderBy('created_at', 'desc')->get();
+        $hampers = Hamper::with('category')
+            ->orderBy('created_at', 'desc')
+            ->get();
 
         return Inertia::render('user/hampers/index', [
             'hampers' => $hampers,
