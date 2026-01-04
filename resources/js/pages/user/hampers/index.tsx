@@ -239,7 +239,7 @@ export default function Hamper({ hampers }: HamperProps) {
                                 className="mt-2 font-black-mango text-3xl font-bold md:text-4xl"
                             >
                                 Paket Hampers{' '}
-                                <span className="bg-gradient-to-r from-primary to-amber-600 bg-clip-text text-transparent">Idul Fitri 1446H</span>
+                                <span className="bg-gradient-to-r from-primary to-amber-600 bg-clip-text text-transparent">Idul Fitri 1447H</span>
                             </motion.h2>
                             <motion.p
                                 initial={{ opacity: 0, y: 20 }}
