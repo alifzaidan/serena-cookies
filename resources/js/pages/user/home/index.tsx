@@ -761,7 +761,7 @@ export default function Home({ variants, hampers }: HomeProps) {
                             />
 
                             <div className="relative overflow-hidden rounded-3xl border-4 border-secondary shadow-2xl">
-                                <img src="/assets/images/hampers.jpg" alt="Paket Hampers Serena Cookies" className="h-full w-full object-cover" />
+                                <img src="/assets/images/hampers-new.jpeg" alt="Paket Hampers Serena Cookies" className="h-full w-full object-cover" />
 
                                 <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent opacity-0 transition-opacity duration-300 hover:opacity-100" />
                             </div>
